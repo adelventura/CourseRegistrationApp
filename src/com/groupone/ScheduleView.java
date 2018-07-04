@@ -10,20 +10,31 @@ import java.util.ArrayList;
 public class ScheduleView extends JPanel {
 
     private JLabel titleLabel;
-    private JLabel listTitleLabel;
     private JButton addButton;
     private ClassListView classListView;
     private JButton dropButton;
 
     public ScheduleView() {
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        setLayout(new BorderLayout());
 
+        JPanel labelPanel = new JPanel();
+        labelPanel.setLayout(new GridLayout(2, 1));
         titleLabel = new JLabel("Schedule Page", JLabel.LEFT);
         titleLabel.setFont(new Font(titleLabel.getFont().getName(), Font.PLAIN, 30));
 
-        listTitleLabel  = new JLabel("Class List", JLabel.LEFT);
+        labelPanel.add(titleLabel);
+        labelPanel.add(new ClassItemCell("Name", "Department", "Room", "Time", "Day", false));
+        add(labelPanel, BorderLayout.NORTH);
+
         addButton = new JButton("Add");
         dropButton = new JButton("Drop");
+
+        JPanel controls = new JPanel();
+        controls.setLayout(new GridLayout(1, 2));
+        controls.add(addButton);
+        controls.add(dropButton);
+
+        add(controls, BorderLayout.SOUTH);
 
         classListView = new ClassListView(getMyCourses());
         JScrollPane scrollPane = new JScrollPane(classListView);
@@ -32,12 +43,7 @@ public class ScheduleView extends JPanel {
         addButton.addActionListener(listener);
         dropButton.addActionListener(listener);
 
-        add(titleLabel);
-        add(listTitleLabel);
-        add(new ClassItemCell("Name", "Department", "Room", "Time", "Day", false));
-        add(scrollPane);
-        add(addButton);
-        add(dropButton);
+        add(scrollPane, BorderLayout.CENTER);
     }
 
     private void add() {
