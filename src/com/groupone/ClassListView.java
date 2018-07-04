@@ -5,20 +5,15 @@ import java.util.ArrayList;
 
 public class ClassListView extends JPanel {
 
-    private JLabel titleLabel;
     private ArrayList<ClassItemCell> cells;
 
     public ClassListView(ArrayList<Course> courses) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        titleLabel = new JLabel("Class List", JLabel.LEFT);
-
         setCourses(courses);
     }
 
     public void setCourses(ArrayList<Course> courses) {
         removeAll();
-
-        add(titleLabel);
 
         cells = new ArrayList<>();
         for (int i = 0; i < courses.size(); i += 1) {

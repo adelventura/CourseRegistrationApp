@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class ScheduleView extends JPanel {
 
     private JLabel titleLabel;
+    private JLabel listTitleLabel;
     private JButton addButton;
     private ClassListView classListView;
     private JButton dropButton;
@@ -18,18 +19,24 @@ public class ScheduleView extends JPanel {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         titleLabel = new JLabel("Schedule Page", JLabel.LEFT);
+        titleLabel.setFont(new Font(titleLabel.getFont().getName(), Font.PLAIN, 30));
+
+        listTitleLabel  = new JLabel("Class List", JLabel.LEFT);
         addButton = new JButton("Add");
         dropButton = new JButton("Drop");
 
         classListView = new ClassListView(getMyCourses());
+        JScrollPane scrollPane = new JScrollPane(classListView);
 
         ButtonListener listener = new ButtonListener();
         addButton.addActionListener(listener);
         dropButton.addActionListener(listener);
 
         add(titleLabel);
+        add(listTitleLabel);
+        add(new ClassItemCell("Name", "Department", "Room", "Time", "Day", false));
+        add(scrollPane);
         add(addButton);
-        add(classListView);
         add(dropButton);
     }
 

@@ -1,6 +1,7 @@
 package com.groupone;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class ClassItemCell extends JPanel {
 
@@ -14,23 +15,38 @@ public class ClassItemCell extends JPanel {
     JCheckBox selectedBox;
 
     public ClassItemCell(Course course) {
+        this(course.name, course.department, Integer.toString(course.room), course.time, course.day, true);
         this.course = course;
+    }
 
-        setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+    public ClassItemCell(String name, String department, String room, String time, String day, boolean showBox) {
+        setLayout(new GridBagLayout());
 
-        nameLabel = new JLabel(course.name, JLabel.LEFT);
-        departmentLabel = new JLabel(course.department, JLabel.LEFT);
-        roomLabel = new JLabel(Integer.toString(course.room), JLabel.LEFT);
-        timeLabel = new JLabel(course.time, JLabel.LEFT);
-        dayLabel = new JLabel(course.day, JLabel.LEFT);
-        selectedBox = new JCheckBox();
+        nameLabel = new JLabel(name, JLabel.LEFT);
+        departmentLabel = new JLabel(department, JLabel.LEFT);
+        roomLabel = new JLabel(room, JLabel.LEFT);
+        timeLabel = new JLabel(time, JLabel.LEFT);
+        dayLabel = new JLabel(day, JLabel.LEFT);
 
-        add(nameLabel);
-        add(departmentLabel);
-        add(roomLabel);
-        add(timeLabel);
-        add(dayLabel);
-        add(selectedBox);
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.fill = GridBagConstraints.HORIZONTAL;
+        constraints.weightx = 1;
+        constraints.anchor = GridBagConstraints.SOUTHWEST;
+        constraints.fill = GridBagConstraints.HORIZONTAL;
+
+        add(nameLabel, constraints);
+        add(departmentLabel, constraints);
+        add(roomLabel, constraints);
+        add(timeLabel, constraints);
+        add(dayLabel, constraints);
+
+        if (showBox) {
+            selectedBox = new JCheckBox();
+            add(selectedBox, constraints);
+        } else {
+            // just put in some space to take up where a checkbox would be but isn't
+            add(new JLabel("Drop", JLabel.LEFT), constraints);
+        }
     }
 
     public Course getCourse() {
