@@ -20,32 +20,26 @@ public class ClassItemCell extends JPanel {
     }
 
     public ClassItemCell(String name, String department, String room, String time, String day, boolean showBox) {
-        setLayout(new GridBagLayout());
+        setLayout(new GridLayout(1,6));
 
-        nameLabel = new JLabel(name, JLabel.LEFT);
+        nameLabel = new JLabel(name, JLabel.CENTER);
         departmentLabel = new JLabel(department, JLabel.LEFT);
-        roomLabel = new JLabel(room, JLabel.LEFT);
+        roomLabel = new JLabel(room, JLabel.CENTER);
         timeLabel = new JLabel(time, JLabel.LEFT);
-        dayLabel = new JLabel(day, JLabel.LEFT);
+        dayLabel = new JLabel(day, JLabel.CENTER);
 
-        GridBagConstraints constraints = new GridBagConstraints();
-        constraints.fill = GridBagConstraints.HORIZONTAL;
-        constraints.weightx = 1;
-        constraints.anchor = GridBagConstraints.SOUTHWEST;
-        constraints.fill = GridBagConstraints.HORIZONTAL;
-
-        add(nameLabel, constraints);
-        add(departmentLabel, constraints);
-        add(roomLabel, constraints);
-        add(timeLabel, constraints);
-        add(dayLabel, constraints);
+        add(nameLabel);
+        add(departmentLabel);
+        add(roomLabel);
+        add(timeLabel);
+        add(dayLabel);
 
         if (showBox) {
             selectedBox = new JCheckBox();
-            add(selectedBox, constraints);
+            add(selectedBox);
         } else {
             // just put in some space to take up where a checkbox would be but isn't
-            add(new JLabel("Drop", JLabel.LEFT), constraints);
+            add(new JLabel("Drop", JLabel.LEFT));
         }
     }
 
