@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class ScheduleView extends JPanel {
 
@@ -18,7 +19,15 @@ public class ScheduleView extends JPanel {
         titleLabel = new JLabel("Schedule Page", JLabel.LEFT);
         addButton = new JButton("Add");
         dropButton = new JButton("Drop");
-        classListView = new ClassListView();
+
+        ArrayList<Course> courses = new ArrayList<>();
+        for (int i = 0; i < 10; i += 1) {
+            String name = "CS" + Integer.toString((int)(Math.random() * 1000));
+            Course course = new Course(name, "Computer Science");
+            courses.add(course);
+        }
+
+        classListView = new ClassListView(courses);
 
         ButtonListener listener = new ButtonListener();
         addButton.addActionListener(listener);
