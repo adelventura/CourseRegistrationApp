@@ -4,6 +4,8 @@ import javax.swing.*;
 
 public class ClassItemCell extends JPanel {
 
+    private Course course;
+
     JLabel nameLabel;
     JLabel departmentLabel;
     JLabel roomLabel;
@@ -12,6 +14,8 @@ public class ClassItemCell extends JPanel {
     JCheckBox selectedBox;
 
     public ClassItemCell(Course course) {
+        this.course = course;
+
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 
         nameLabel = new JLabel(course.name, JLabel.LEFT);
@@ -27,6 +31,14 @@ public class ClassItemCell extends JPanel {
         add(timeLabel);
         add(dayLabel);
         add(selectedBox);
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public boolean isSelected() {
+        return selectedBox.isSelected();
     }
 
 }

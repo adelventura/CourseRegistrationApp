@@ -4,14 +4,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class ScheduleView extends JPanel {
 
-    JLabel titleLabel;
-    JButton addButton;
-    ClassListView classListView;
-    JButton dropButton;
+    private JLabel titleLabel;
+    private JButton addButton;
+    private ClassListView classListView;
+    private JButton dropButton;
 
     public ScheduleView() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -20,14 +21,7 @@ public class ScheduleView extends JPanel {
         addButton = new JButton("Add");
         dropButton = new JButton("Drop");
 
-        ArrayList<Course> courses = new ArrayList<>();
-        for (int i = 0; i < 10; i += 1) {
-            String name = "CS" + Integer.toString((int)(Math.random() * 1000));
-            Course course = new Course(name, "Computer Science");
-            courses.add(course);
-        }
-
-        classListView = new ClassListView(courses);
+        classListView = new ClassListView(getMyCourses());
 
         ButtonListener listener = new ButtonListener();
         addButton.addActionListener(listener);
@@ -44,7 +38,10 @@ public class ScheduleView extends JPanel {
     }
 
     private void drop() {
-        JOptionPane.showMessageDialog(null, "todo: drop classes");
+        ArrayList<Course> droppedCourses = classListView.selectedCourses();
+        dropCourses(droppedCourses);
+
+        classListView.setCourses(getMyCourses());
     }
 
     private class ButtonListener implements ActionListener {
@@ -56,6 +53,28 @@ public class ScheduleView extends JPanel {
                 drop();
             }
         }
+    }
+
+    // use database
+    private ArrayList<Course> courses;
+
+    private ArrayList<Course> getMyCourses() {
+        // TODO: get from database
+        if (courses == null) {
+            courses = new ArrayList<>();
+            for (int i = 0; i < 10; i += 1) {
+                String name = "CS" + Integer.toString((int) (Math.random() * 1000));
+                Course course = new Course(name, "Computer Science");
+                courses.add(course);
+            }
+        }
+
+        return courses;
+    }
+
+    public void dropCourses(ArrayList<Course> coursesToDrop) {
+        // TODO: change database
+        this.courses.removeAll(coursesToDrop);
     }
 
 }
