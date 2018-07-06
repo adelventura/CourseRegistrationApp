@@ -1,13 +1,12 @@
 import java.sql.*;
 
 
-public class Student extends AllStudents{
+public class Student{
 	
 	public static String username;
 	public static String password;
 	public static String firstName;
 	public static String lastName;
-	public static int studentID;
 	public static String email;
 	public static String studentCourseTbl;
 	
@@ -17,7 +16,6 @@ public class Student extends AllStudents{
 		firstName = fN;
 		lastName = lN;
 		email=Email;
-		studentID = super.getID(); 
 		studentCourseTbl = lastName.toLowerCase()+"_table";
 		//when a new student is created, he/she is automatically added to student database
 		//addStudentInfoToStudentsTable(); 
