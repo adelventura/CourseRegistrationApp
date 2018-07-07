@@ -10,8 +10,9 @@ public class Student {
 	public String lastName;
 	public String email;
 	public String studentCourseTbl;
+	public ArrayList<Course> courses = new ArrayList<Course>();
 	
-public Student(String userName, String pass, String fN, String lN, String Email) {
+	public Student(String userName, String pass, String fN, String lN, String Email) {
 		this.username = userName;
 		this.password = pass;
 		this.firstName = fN;
@@ -22,7 +23,7 @@ public Student(String userName, String pass, String fN, String lN, String Email)
 		addStudentInfoToStudentsTable(); 
 	}
 	
-public void addStudentInfoToStudentsTable() {
+	public void addStudentInfoToStudentsTable() {
 		
 		String sql = "INSERT INTO `students`.`student_list`(`First_Name`,`Last_Name`, `email`)"
 					+ " VALUES(?,?,?)";
@@ -46,7 +47,7 @@ public void addStudentInfoToStudentsTable() {
 	/*
 	 * method creates course list for student with specified fields
 	 */
-public void createCourseListForStudent() {
+	public void createCourseListForStudent() {
 		String sqlCode = "CREATE TABLE "+studentCourseTbl+"("
 				+ "Course_Num int NOT NULL, "
 				+ "Course_Name varchar(45), "
@@ -72,11 +73,18 @@ public void createCourseListForStudent() {
 	 * method adds a selected course to the student's course list
 	 * @param takes course number and course department
 	 */
-public void addCourseToExistingCourseList(int courseNum, String department) {
+	public void addCourseToExistingCourseList(int courseNum, String department) {
 		
 		//if the student's course list exists and there is no time conflict between
 		//course wishing to be added and existing courses, adds course to course list
 		if(!timeConflictExists(courseNum, department)) {
+			//Adds the new course to the existing array list of student's courses
+			
+			//retrieving all information about specific course
+			String sql = "SELECT * FROM `department_tables`.`all_courses` WHERE `Course_Num` = '"+courseNum+"'"
+					+ " AND `department` = '"+department+"'";
+			
+
 			String sqlCode = "INSERT INTO `students`.`"+studentCourseTbl+"`("
 					+ "Course_Num, "
 					+ "Course_Name, "
@@ -93,12 +101,24 @@ public void addCourseToExistingCourseList(int courseNum, String department) {
 			try(Connection conn = Methods.connectToStudentsTable("root", "password");
 					PreparedStatement pstmt = conn.prepareStatement(sqlCode)) {
 					pstmt.executeUpdate();
+					
+					//adding course to courses array list for student
+					Statement stmt = conn.createStatement();
+					ResultSet rs = stmt.executeQuery(sql);
+					
+					while(rs.next()) {
+						Course course = new Course(rs.getString(2), rs.getString(8), rs.getInt(7), rs.getString(4),
+								rs.getString(3), rs.getInt(1), rs.getInt(5), rs.getString(6));
+						courses.add(course);
+						
+					}
 			} catch(SQLException e) {
 				System.out.println("add course to existing: "+e.getMessage());
 			}
-		else{
+		}else {
 			System.out.println("Time conflict.");
 		}
+	
 	}
 	
 	
@@ -151,7 +171,6 @@ public void addCourseToExistingCourseList(int courseNum, String department) {
 	
 	//method prints out student's course list
 	public ArrayList<Course> showStudentsCurrentCourseList() {
-			ArrayList<Course> courses = new ArrayList<Course>();
 	
 			//selecting all information from student's table
 			String sqlCode = "SELECT * FROM `"+studentCourseTbl+"`";
