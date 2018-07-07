@@ -22,6 +22,18 @@ public class Student {
 		//when a new student is created, he/she is automatically added to student database
 		addStudentInfoToStudentsTable(); 
 	}
+	
+	public Student(String fN, String lN) {
+		this.firstName = fN;
+		this.lastName = lN;
+	}
+	
+	public String getFirstName() {
+		return this.firstName;
+	}
+	public String getLastName() {
+		return this.lastName;
+	}
 
 	
 	/*
@@ -30,22 +42,26 @@ public class Student {
 	 */
 	public void addStudentInfoToStudentsTable() {
 		
-		String sql = "INSERT INTO `students`.`student_list`(`First_Name`,`Last_Name`, `email`)"
-					+ " VALUES(?,?,?)";
-		try(Connection conn = Methods.connectToStudentsTable("root", "password");
-			PreparedStatement pstmt = conn.prepareStatement(sql)) {
-				pstmt.setString(1, this.firstName);
-				pstmt.setString(2, this.lastName);
-				pstmt.setString(3, this.email);
-				pstmt.executeUpdate();
-					
-			} catch(SQLException e) {
-				System.out.println(e.getMessage());
-			}
-		//when new student is added to student database
-		//automatically creates course list for newly created student
-		//course list is initially empty
-		createCourseListForStudent();
+		if(!studentExists()) {
+			String sql = "INSERT INTO `students`.`student_list`(`First_Name`,`Last_Name`, `email`)"
+						+ " VALUES(?,?,?)";
+			try(Connection conn = Methods.connectToStudentsTable("root", "password");
+				PreparedStatement pstmt = conn.prepareStatement(sql)) {
+					pstmt.setString(1, this.firstName);
+					pstmt.setString(2, this.lastName);
+					pstmt.setString(3, this.email);
+					pstmt.executeUpdate();
+						
+				} catch(SQLException e) {
+					System.out.println(e.getMessage());
+				}
+			//when new student is added to student database
+			//automatically creates course list for newly created student
+			//course list is initially empty
+			createCourseListForStudent();
+		}else {
+			System.out.println("Student already exists in database.");
+		}
 	
 	}
 	
@@ -176,6 +192,21 @@ public class Student {
 
 	}
 	
+	/*
+	 * this method checks to see if student already exists in database
+	 */
+	public boolean studentExists() {
+		ArrayList<Student> students = Methods.getAllStudentInfo();
+		for(int i=0; i<students.size();i++) {
+			if(this.firstName.equals(students.get(i).getFirstName()) 
+					&& this.lastName.equals(students.get(i).getLastName())) {
+				return true;
+			}
+		}
+		
+		return false;
+		
+	}
 
 	
 	/*
@@ -190,7 +221,7 @@ public class Student {
 			try(Connection conn = Methods.connectToStudentsTable("root", "password")){
 				Statement stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(sqlCode);
-				ResultSetMetaData rsmd = rs.getMetaData();
+				
 				//name, department, roomNum, time,  day, courseNum, credits, instructor
 				//creating course object for all courses
 				
