@@ -1,34 +1,33 @@
 import java.sql.*;
+import java.util.ArrayList;
 
 
-public class Student{
+public class Student {
 	
-	public static String username;
-	public static String password;
-	public static String firstName;
-	public static String lastName;
-	public static String email;
-	public static String studentCourseTbl;
+	public String username;
+	public String password;
+	public String firstName;
+	public String lastName;
+	public String email;
+	public String studentCourseTbl;
 	
-	public Student(String userName, String pass, String fN, String lN, String Email) {
-		username = userName;
-		password = pass;
-		firstName = fN;
-		lastName = lN;
-		email=Email;
-		studentCourseTbl = lastName.toLowerCase()+"_table";
+public Student(String userName, String pass, String fN, String lN, String Email) {
+		this.username = userName;
+		this.password = pass;
+		this.firstName = fN;
+		this.lastName = lN;
+		this.email=Email;
+		this.studentCourseTbl = lastName.toLowerCase()+"_table";
 		//when a new student is created, he/she is automatically added to student database
-		//addStudentInfoToStudentsTable(); 
+		addStudentInfoToStudentsTable(); 
 	}
 	
-	public static void addStudentInfoToStudentsTable() {
+public void addStudentInfoToStudentsTable() {
 		
 		String sql = "INSERT INTO `students`.`student_list`(`First_Name`,`Last_Name`, `email`)"
 					+ " VALUES(?,?,?)";
 		try(Connection conn = Methods.connectToStudentsTable("root", "password");
 			PreparedStatement pstmt = conn.prepareStatement(sql)) {
-					
-				//pstmt.setInt(1, this.studentID);
 				pstmt.setString(1, firstName);
 				pstmt.setString(2, lastName);
 				pstmt.setString(3, email);
@@ -37,18 +36,17 @@ public class Student{
 			} catch(SQLException e) {
 				System.out.println(e.getMessage());
 			}
-		
 		//when new student is added to student database
 		//automatically creates course list for newly created student
 		//course list is initially empty
-		//createCourseListForStudent();
+		createCourseListForStudent();
 	
 	}
 	
 	/*
 	 * method creates course list for student with specified fields
 	 */
-	public static void createCourseListForStudent() {
+public void createCourseListForStudent() {
 		String sqlCode = "CREATE TABLE "+studentCourseTbl+"("
 				+ "Course_Num int NOT NULL, "
 				+ "Course_Name varchar(45), "
@@ -74,11 +72,11 @@ public class Student{
 	 * method adds a selected course to the student's course list
 	 * @param takes course number and course department
 	 */
-	public static void addCourseToExistingCourseList(int courseNum, String department) {
+public void addCourseToExistingCourseList(int courseNum, String department) {
 		
 		//if the student's course list exists and there is no time conflict between
 		//course wishing to be added and existing courses, adds course to course list
-
+		if(!timeConflictExists(courseNum, department)) {
 			String sqlCode = "INSERT INTO `students`.`"+studentCourseTbl+"`("
 					+ "Course_Num, "
 					+ "Course_Name, "
@@ -86,7 +84,8 @@ public class Student{
 					+ "Time, "
 					+ "Credits,"
 					+ "Instructor, "
-					+ "Room_Number) "
+					+ "Room_Number,"
+					+ "department) "
 					+ "SELECT Course_Num, Course_Name, Days, Time, Credits, Instructor, Room_Number "
 					+ "FROM `department_tables`.`all_courses` WHERE `Course_Num` = '"+courseNum+"'"
 							+ " AND `department` = '"+department+"'";
@@ -97,15 +96,61 @@ public class Student{
 			} catch(SQLException e) {
 				System.out.println("add course to existing: "+e.getMessage());
 			}
-	
+		else{
+			System.out.println("Time conflict.");
+		}
 	}
 	
+	
+	/*
+	 * method checks to see if there is a time conflict between course wishing to be added
+	 * and existing courses based on time and day of courses
+	 * @param course number and course department
+	 */
+	public boolean timeConflictExists(int courseNum, String department) {
+		
+		String daysOfAdded = "";
+		String timeOfAdded = "";
+		
+		ArrayList<Course> current = showStudentsCurrentCourseList();
+		String[] currentDays = new String[current.size()];
+		String[] currentTimes = new String[current.size()];
+		//putting all days of current courses into an array to be used to compare
+		for(int i=0; i<current.size(); i++) {
+			currentDays[i] = current.get(i).getDay();
+		}
+		//purring all times of current courses into an array to be used to compare
+		for(int i=0; i<current.size(); i++) {
+			currentTimes[i] = current.get(i).getTime();
+		}
+		
+		//getting day & time of course wishing to be added
+		String sqlCode = "SELECT `Days`, `Time` FROM `department_tables`.`all_courses` WHERE "
+				+ "`Course_Num` = '"+courseNum+"' AND `department` = '"+department+"'";
+		try(Connection conn = Methods.connectToDeptTable("root", "password")){
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sqlCode);
+			daysOfAdded = rs.getString(1);
+			timeOfAdded = rs.getString(2);
+		}catch(SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		//checking times & days to see if there are any conflicts
+		for(int j=0; j<current.size(); j++) {
+			if(currentDays[j].equals(daysOfAdded)&&currentTimes[j].equals(timeOfAdded)) {
+					return true; //time conflict exists
+			}
+		}
+		
+		return false;
+
+	}
 	
 
 	
 	//method prints out student's course list
-	
-	public static ArrayList<Course> showStudentsCurrentCourseList() {
+	public ArrayList<Course> showStudentsCurrentCourseList() {
 			ArrayList<Course> courses = new ArrayList<Course>();
 	
 			//selecting all information from student's table
@@ -130,11 +175,9 @@ public class Student{
 		
 	}
 	
-	
-	
 	//method verifying if student has a course list
 	//returns true if course list exists, false if it doesn't
-	public static boolean studentCourseListExists() {
+	public boolean studentCourseListExists() {
 		try(Connection conn = Methods.connectToStudentsTable("root", "password")){
 			DatabaseMetaData dbm = conn.getMetaData();
 			// check if student course list table is there
@@ -148,16 +191,6 @@ public class Student{
 		return false;
 		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 
