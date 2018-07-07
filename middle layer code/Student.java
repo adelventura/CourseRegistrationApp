@@ -103,35 +103,34 @@ public class Student{
 	
 
 	
-	
 	//method prints out student's course list
-	public static void showStudentsCurrentCourseList() {
-		
-		//check that student table exists
-		if(studentCourseListExists()) {
+	
+	public static ArrayList<Course> showStudentsCurrentCourseList() {
+			ArrayList<Course> courses = new ArrayList<Course>();
+	
 			//selecting all information from student's table
 			String sqlCode = "SELECT * FROM `"+studentCourseTbl+"`";
 			try(Connection conn = Methods.connectToStudentsTable("root", "password")){
 				Statement stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(sqlCode);
 				ResultSetMetaData rsmd = rs.getMetaData();
-				int columnCount = rsmd.getColumnCount();
+				//name, department, roomNum, time,  day, courseNum, credits, instructor
+				//creating course object for all courses
 				
 				while(rs.next()) {
-					//printing out schedule information
-					for(int i =1; i<columnCount; i++) {
-						System.out.println(rsmd.getColumnName(i)+": "+rs.getString(i));
-					}
+					Course course = new Course(rs.getString(2), rs.getString(8), rs.getInt(7), rs.getString(4),
+							rs.getString(3), rs.getInt(1), rs.getInt(5), rs.getString(6));
+					courses.add(course);
 				}
 			}catch(SQLException e) {
 				System.out.println("show student current: "+e.getMessage());
 			}
 			
-		}else {
-			System.out.println("This student does not have a course list.");
-		}
+			return courses;
 		
 	}
+	
+	
 	
 	//method verifying if student has a course list
 	//returns true if course list exists, false if it doesn't
