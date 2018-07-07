@@ -22,16 +22,21 @@ public class Student {
 		//when a new student is created, he/she is automatically added to student database
 		addStudentInfoToStudentsTable(); 
 	}
+
 	
+	/*
+	 * this method takes the information passed into the class constructor 
+	 * and adds it to the student_list table in the database
+	 */
 	public void addStudentInfoToStudentsTable() {
 		
 		String sql = "INSERT INTO `students`.`student_list`(`First_Name`,`Last_Name`, `email`)"
 					+ " VALUES(?,?,?)";
 		try(Connection conn = Methods.connectToStudentsTable("root", "password");
 			PreparedStatement pstmt = conn.prepareStatement(sql)) {
-				pstmt.setString(1, firstName);
-				pstmt.setString(2, lastName);
-				pstmt.setString(3, email);
+				pstmt.setString(1, this.firstName);
+				pstmt.setString(2, this.lastName);
+				pstmt.setString(3, this.email);
 				pstmt.executeUpdate();
 					
 			} catch(SQLException e) {
@@ -44,8 +49,9 @@ public class Student {
 	
 	}
 	
+	
 	/*
-	 * method creates course list for student with specified fields
+	 * method creates course list in database for student with specified fields
 	 */
 	public void createCourseListForStudent() {
 		String sqlCode = "CREATE TABLE "+studentCourseTbl+"("
@@ -72,6 +78,9 @@ public class Student {
 	/*
 	 * method adds a selected course to the student's course list
 	 * @param takes course number and course department
+	 * it first checks to see that there is no time conflict
+	 * if there isn't, it adds the course to the array list of the student's courses
+	 * and also adds the course to the student's course list in the database
 	 */
 	public void addCourseToExistingCourseList(int courseNum, String department) {
 		
@@ -132,7 +141,7 @@ public class Student {
 		String daysOfAdded = "";
 		String timeOfAdded = "";
 		
-		ArrayList<Course> current = showStudentsCurrentCourseList();
+		ArrayList<Course> current = getStudentsCurrentCourseList();
 		String[] currentDays = new String[current.size()];
 		String[] currentTimes = new String[current.size()];
 		//putting all days of current courses into an array to be used to compare
@@ -169,8 +178,12 @@ public class Student {
 	
 
 	
-	//method prints out student's course list
-	public ArrayList<Course> showStudentsCurrentCourseList() {
+	/*
+	 * this method retrieves information from the database about the student's
+	 * current courses and creates and returns an array list of Course objects 
+	 * with the information
+	 */
+	public ArrayList<Course> getStudentsCurrentCourseList() {
 	
 			//selecting all information from student's table
 			String sqlCode = "SELECT * FROM `"+studentCourseTbl+"`";
@@ -194,8 +207,9 @@ public class Student {
 		
 	}
 	
-	//method verifying if student has a course list
-	//returns true if course list exists, false if it doesn't
+	/*
+	 * this method verifies that the student's course list exists
+	 */
 	public boolean studentCourseListExists() {
 		try(Connection conn = Methods.connectToStudentsTable("root", "password")){
 			DatabaseMetaData dbm = conn.getMetaData();
