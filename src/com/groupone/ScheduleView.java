@@ -7,6 +7,10 @@ import java.awt.event.ActionListener;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
+//I think I replaced all of them, but just so you know:
+//anywhere you call the getMyCourses() method should be replaced with:
+//student.showStudentsCurrentCourseList()
+
 public class ScheduleView extends JPanel {
 
     private JLabel titleLabel;
@@ -39,7 +43,7 @@ public class ScheduleView extends JPanel {
 
         add(controls, BorderLayout.SOUTH);
 
-        classListView = new ClassListView(getMyCourses());
+        classListView = new ClassListView(student.showStudentsCurrentCourseList());
         JScrollPane scrollPane = new JScrollPane(classListView);
 
         ButtonListener listener = new ButtonListener();
@@ -57,7 +61,7 @@ public class ScheduleView extends JPanel {
         ArrayList<Course> droppedCourses = classListView.selectedCourses();
         dropCourses(droppedCourses);
 
-        classListView.setCourses(getMyCourses());
+        classListView.setCourses(student.showStudentsCurrentCourseList());
     }
 
     private class ButtonListener implements ActionListener {
