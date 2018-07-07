@@ -13,8 +13,11 @@ public class ScheduleView extends JPanel {
     private JButton addButton;
     private ClassListView classListView;
     private JButton dropButton;
+    public Student student;
 
-    public ScheduleView() {
+    public ScheduleView(Student student) {
+        this.student = student;
+        
         setLayout(new BorderLayout());
 
         JPanel labelPanel = new JPanel();
@@ -68,22 +71,8 @@ public class ScheduleView extends JPanel {
         }
     }
 
-    // use database
-    private ArrayList<Course> courses;
-
-    private ArrayList<Course> getMyCourses() {
-        // TODO: get from database
-        if (courses == null) {
-            courses = new ArrayList<>();
-            for (int i = 0; i < 10; i += 1) {
-                String name = "CS" + Integer.toString((int) (Math.random() * 1000));
-                Course course = new Course(name, "Computer Science");
-                courses.add(course);
-            }
-        }
-
-        return courses;
-    }
+  //I deleted your getMyCourses() method and instead integrated it with one of my 
+  //existing methods; now it connects directly to the database
 
     public void dropCourses(ArrayList<Course> coursesToDrop) {
         // TODO: change database
