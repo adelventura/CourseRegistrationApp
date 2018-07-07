@@ -37,6 +37,25 @@ public class Methods {
 	}
 	
 	
+	public static ArrayList<Student> getAllStudentInfo(){
+		ArrayList<Student> students = new ArrayList<Student>();
+		String sqlCode = "SELECT First_Name, Last_Name FROM `students`.`student_list`";
+		try(Connection conn = connectToStudentsTable("root", "password")){
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sqlCode);
+			
+			while(rs.next()) {
+				Student stdnt = new Student(rs.getString(1), rs.getString(2));
+				students.add(stdnt);
+			}
+			
+		}catch(SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		return students;
+	}
+	
 	/*
 	 * this method returns an array list of course objects, these course objects
 	 * hold the coures information of all courses of a specified department
