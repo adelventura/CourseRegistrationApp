@@ -158,44 +158,33 @@ public class Student {
      * @param course number and course department
      */
     public boolean timeConflictExists(int courseNum, String department) {
+		String daysOfAdded = "";
+		String timeOfAdded = "";
+		ArrayList<Course> current = getStudentsCurrentCourseList();
+		
+		//getting day & time of course wishing to be added
+		String sqlCode = "SELECT `Days`, `Time` FROM `department_tables`.`all_courses` WHERE "
+				+ "`Course_Num` = '"+courseNum+"' AND `department` = '"+department+"'";
+		try(Connection conn = Methods.connectToDeptTable("root", "password")){
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sqlCode);
+			daysOfAdded = rs.getString(1);
+			timeOfAdded = rs.getString(2);
+		}catch(SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		//checking times & days to see if there are any conflicts
+		for(int j=0; j<current.size(); j++) {
+			if(current.get(j).getDay().equals(daysOfAdded)&&
+					current.get(j).getTime().equals(timeOfAdded)) {
+					return true; //time conflict exists
+			}
+		}
+		
+		return false;
 
-        String daysOfAdded = "";
-        String timeOfAdded = "";
-
-        ArrayList<Course> current = getStudentsCurrentCourseList();
-        String[] currentDays = new String[current.size()];
-        String[] currentTimes = new String[current.size()];
-        //putting all days of current courses into an array to be used to compare
-        for (int i = 0; i < current.size(); i++) {
-            currentDays[i] = current.get(i).day;
-        }
-        //purring all times of current courses into an array to be used to compare
-        for (int i = 0; i < current.size(); i++) {
-            currentTimes[i] = current.get(i).time;
-        }
-
-        //getting day & time of course wishing to be added
-        String sqlCode = "SELECT `Days`, `Time` FROM `department_tables`.`all_courses` WHERE "
-                + "`Course_Num` = '" + courseNum + "' AND `department` = '" + department + "'";
-        try (Connection conn = Methods.connectToDeptTable("root", "password")) {
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(sqlCode);
-            daysOfAdded = rs.getString(1);
-            timeOfAdded = rs.getString(2);
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-
-        //checking times & days to see if there are any conflicts
-        for (int j = 0; j < current.size(); j++) {
-            if (currentDays[j].equals(daysOfAdded) && currentTimes[j].equals(timeOfAdded)) {
-                return true; //time conflict exists
-            }
-        }
-
-        return false;
-
-    }
+	}
 
     /*
      * this method checks to see if student already exists in database
