@@ -1,5 +1,7 @@
 package com.groupone;
 
+import com.groupone.middle.Student;
+
 import javax.swing.*;
 
 public class Main {
@@ -8,7 +10,9 @@ public class Main {
         JFrame frame = new JFrame("Course Registration");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        ScheduleView panel = new ScheduleView();
+        // TODO: get from login or something
+        Student student = new Student("Ashley", "ashleyisthebest1", "Ashley", "DelVentura", "do.not.reply@idk.com");
+        ScheduleView panel = new ScheduleView(student);
         frame.getContentPane().add(panel);
         frame.pack();
         frame.setSize(800, 500);

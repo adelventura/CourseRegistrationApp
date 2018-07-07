@@ -20,7 +20,7 @@ public class ClassItemCell extends JPanel {
     }
 
     public ClassItemCell(String name, String department, String room, String time, String day, boolean showBox) {
-        setLayout(new GridLayout(1,6));
+        setLayout(new GridLayout(1, 6));
 
         nameLabel = new JLabel(name, JLabel.CENTER);
         departmentLabel = new JLabel(department, JLabel.LEFT);

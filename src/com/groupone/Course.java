@@ -1,4 +1,5 @@
 package com.groupone;
+
 import java.sql.*;
 
 public class Course {
@@ -11,20 +12,18 @@ public class Course {
     public int courseNum;
     public int credits;
     public String instructor;
-    
-    public Course(String name, String department, int roomNum, String time, 
-    		String day, int courseNum, int credits, String instructor) {
-		this.name=name;
-		this.department=department;
-		this.room=roomNum;
-		this.time=time;
-		this.courseNum = courseNum;
-		this.day=day;
-		this.credits=credits;
 
-}
+    public Course(String name, String department, int roomNum, String time,
+                  String day, int courseNum, int credits, String instructor) {
+        this.name = name;
+        this.department = department;
+        this.room = roomNum;
+        this.time = time;
+        this.courseNum = courseNum;
+        this.day = day;
+        this.credits = credits;
 
+    }
 
-  
 
 }

@@ -1,5 +1,7 @@
 package com.groupone;
 
+import com.groupone.middle.Student;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -21,7 +23,7 @@ public class ScheduleView extends JPanel {
 
     public ScheduleView(Student student) {
         this.student = student;
-        
+
         setLayout(new BorderLayout());
 
         JPanel labelPanel = new JPanel();
@@ -43,7 +45,7 @@ public class ScheduleView extends JPanel {
 
         add(controls, BorderLayout.SOUTH);
 
-        classListView = new ClassListView(student.showStudentsCurrentCourseList());
+        classListView = new ClassListView(student.getStudentsCurrentCourseList());
         JScrollPane scrollPane = new JScrollPane(classListView);
 
         ButtonListener listener = new ButtonListener();
@@ -61,7 +63,7 @@ public class ScheduleView extends JPanel {
         ArrayList<Course> droppedCourses = classListView.selectedCourses();
         dropCourses(droppedCourses);
 
-        classListView.setCourses(student.showStudentsCurrentCourseList());
+        classListView.setCourses(student.getStudentsCurrentCourseList());
     }
 
     private class ButtonListener implements ActionListener {
@@ -75,12 +77,12 @@ public class ScheduleView extends JPanel {
         }
     }
 
-  //I deleted your getMyCourses() method and instead integrated it with one of my 
-  //existing methods; now it connects directly to the database
+    //I deleted your getMyCourses() method and instead integrated it with one of my
+    //existing methods; now it connects directly to the database
 
     public void dropCourses(ArrayList<Course> coursesToDrop) {
         // TODO: change database
-        this.courses.removeAll(coursesToDrop);
+//        this.courses.removeAll(coursesToDrop);
     }
 
 }
