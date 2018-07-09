@@ -11,8 +11,7 @@ public class Main {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // TODO: get from login or something
-        Student student = new Student("Ashley", "ashleyisthebest1", "Ashley", "DelVentura", "do.not.reply@idk.com");
-        ScheduleView panel = new ScheduleView(student);
+        ScheduleView panel = new ScheduleView();
         frame.getContentPane().add(panel);
         frame.pack();
         frame.setSize(800, 500);
