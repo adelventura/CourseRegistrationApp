@@ -3,6 +3,11 @@ package com.groupone;
 import javax.swing.*;
 import java.awt.*;
 
+
+//NOTE: needs to have lables for the rest of the fields, like instructor, credits, etc (you can find all the needed fields in the course class)
+
+
+
 public class ClassItemCell extends JPanel {
 
     private Course course;
