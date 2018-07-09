@@ -8,20 +8,18 @@ import java.util.ArrayList;
 
 public class Student {
 
-    public String username;
-    public String password;
+//    public String username;
+//    public String password;
     public String firstName;
     public String lastName;
     public String email;
     public String studentCourseTbl;
     public ArrayList<Course> courses = new ArrayList<Course>();
 
-    public Student(String userName, String pass, String fN, String lN, String Email) {
-        this.username = userName;
-        this.password = pass;
-        this.firstName = fN;
-        this.lastName = lN;
-        this.email = Email;
+    public Student(String firstName, String lastName, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
         this.studentCourseTbl = lastName.toLowerCase() + "_table";
         //when a new student is created, he/she is automatically added to student database
         addStudentInfoToStudentsTable();
