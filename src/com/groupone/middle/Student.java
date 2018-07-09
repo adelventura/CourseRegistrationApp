@@ -176,8 +176,8 @@ public class Student {
 		
 		//checking times & days to see if there are any conflicts
 		for(int j=0; j<current.size(); j++) {
-			if(current.get(j).getDay().equals(daysOfAdded)&&
-					current.get(j).getTime().equals(timeOfAdded)) {
+			if(current.get(j).day.equals(daysOfAdded)&&
+					current.get(j).time.equals(timeOfAdded)) {
 					return true; //time conflict exists
 			}
 		}

@@ -16,6 +16,7 @@ import java.util.ArrayList;
 public class ScheduleView extends JPanel {
 
     private JLabel titleLabel;
+    private JLabel nameLabel;
     private JButton addButton;
     private ClassListView classListView;
     private JButton dropButton;
@@ -27,11 +28,13 @@ public class ScheduleView extends JPanel {
         setLayout(new BorderLayout());
 
         JPanel labelPanel = new JPanel();
-        labelPanel.setLayout(new GridLayout(2, 1));
+        labelPanel.setLayout(new GridLayout(3, 1));
         titleLabel = new JLabel("Schedule Page", JLabel.LEFT);
         titleLabel.setFont(new Font(titleLabel.getFont().getName(), Font.PLAIN, 30));
+        nameLabel = new JLabel("Hi, " + student.firstName + " " + student.lastName, JLabel.LEFT);
 
         labelPanel.add(titleLabel);
+        labelPanel.add(nameLabel);
         
         //NOTE: the other fields need to be added to the label
         labelPanel.add(new ClassItemCell("Name", "Department", "Room", "Time", "Day", false));
