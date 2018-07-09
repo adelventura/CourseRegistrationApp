@@ -33,7 +33,11 @@ public class ScheduleView extends JPanel {
 
         labelPanel.add(titleLabel);
         
-        //NOTE: the other fields need to be added to the label
+        
+        //NOTE: the other fields need to be added to the label such as:
+        // Course Number, credits, instructor
+        
+        
         labelPanel.add(new ClassItemCell("Name", "Department", "Room", "Time", "Day", false));
         add(labelPanel, BorderLayout.NORTH);
 
