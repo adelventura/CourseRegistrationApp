@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 public class Methods {
 
+    public static String[] existingDepts = new String[]{"Chemistry", "Physics", "Math", "Computer Science"};
+
     /*
      * this method is used for connecting to either the table of students
      * and each student's individual course list table in the database
@@ -94,7 +96,6 @@ public class Methods {
      */
     public boolean deptExists(String department) {
         //checking to see if dept exists
-        String[] existingDepts = new String[]{"Chemistry", "Physics", "Math", "Computer Science"};
         for (int i = 0; i < existingDepts.length; i++) {
             if (existingDepts[i].equals(department)) {
                 return true;

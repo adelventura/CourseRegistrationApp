@@ -9,10 +9,6 @@ import java.awt.event.ActionListener;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-//I think I replaced all of them, but just so you know:
-//anywhere you call the getMyCourses() method should be replaced with:
-//student.showStudentsCurrentCourseList()
-
 public class ScheduleView extends JPanel {
 
     private JLabel titleLabel;
@@ -85,9 +81,6 @@ public class ScheduleView extends JPanel {
             }
         }
     }
-
-    //I deleted your getMyCourses() method and instead integrated it with one of my
-    //existing methods; now it connects directly to the database
 
    public void dropCourses(ArrayList<Course> coursesToDrop) {
         // TODO: change database
