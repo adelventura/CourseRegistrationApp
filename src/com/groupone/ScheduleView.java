@@ -32,6 +32,8 @@ public class ScheduleView extends JPanel {
         titleLabel.setFont(new Font(titleLabel.getFont().getName(), Font.PLAIN, 30));
 
         labelPanel.add(titleLabel);
+        
+        //NOTE: the other fields need to be added to the label
         labelPanel.add(new ClassItemCell("Name", "Department", "Room", "Time", "Day", false));
         add(labelPanel, BorderLayout.NORTH);
 
@@ -80,9 +82,9 @@ public class ScheduleView extends JPanel {
     //I deleted your getMyCourses() method and instead integrated it with one of my
     //existing methods; now it connects directly to the database
 
-    public void dropCourses(ArrayList<Course> coursesToDrop) {
+   public void dropCourses(ArrayList<Course> coursesToDrop) {
         // TODO: change database
-//        this.courses.removeAll(coursesToDrop);
+        student.getStudentsCurrentCourseList().removeAll(coursesToDrop);
     }
 
 }
