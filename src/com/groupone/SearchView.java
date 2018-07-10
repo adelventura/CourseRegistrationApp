@@ -95,6 +95,8 @@ public class SearchView extends JPanel {
         frame.setSize(800, 500);
 
         frame.setVisible(true);
+        JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        topFrame.dispose();
     }
 
 }

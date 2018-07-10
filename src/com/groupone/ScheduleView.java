@@ -70,6 +70,8 @@ public class ScheduleView extends JPanel {
         frame.setSize(800, 500);
 
         frame.setVisible(true);
+        JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        topFrame.dispose();
     }
 
     private void drop() {

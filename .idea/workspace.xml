@@ -82,21 +82,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ScheduleView.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ScheduleView.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/groupone/ScheduleView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="82">
-              <caret line="58" column="0" lean-forward="true" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+            <state relative-caret-position="296">
+              <caret line="73" column="27" lean-forward="false" selection-start-line="73" selection-start-column="27" selection-end-line="73" selection-end-column="27" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SearchView.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SearchView.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/groupone/SearchView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="412">
-              <caret line="100" column="0" lean-forward="true" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
+            <state relative-caret-position="396">
+              <caret line="98" column="27" lean-forward="true" selection-start-line="98" selection-start-column="27" selection-end-line="98" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2678#2679#0" expanded="true" />
@@ -163,8 +163,8 @@
         <option value="$PROJECT_DIR$/src/com/groupone/middle/Student.java" />
         <option value="$PROJECT_DIR$/src/com/groupone/middle/Methods.java" />
         <option value="$PROJECT_DIR$/src/com/groupone/ClassItemCell.java" />
-        <option value="$PROJECT_DIR$/src/com/groupone/ScheduleView.java" />
         <option value="$PROJECT_DIR$/src/com/groupone/SearchView.java" />
+        <option value="$PROJECT_DIR$/src/com/groupone/ScheduleView.java" />
       </list>
     </option>
   </component>
@@ -326,12 +326,12 @@
       <option name="presentableId" value="Default" />
       <updated>1530735107896</updated>
       <workItem from="1530735112508" duration="4979000" />
-      <workItem from="1531172742966" duration="6950000" />
+      <workItem from="1531172742966" duration="7230000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24256000" />
+    <option name="totallyTimeSpent" value="24536000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="777" extended-state="6" />
@@ -901,18 +901,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/groupone/ScheduleView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="82">
-          <caret line="58" column="0" lean-forward="true" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/groupone/SearchView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="412">
-          <caret line="100" column="0" lean-forward="true" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
+        <state relative-caret-position="396">
+          <caret line="98" column="27" lean-forward="true" selection-start-line="98" selection-start-column="27" selection-end-line="98" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2678#2679#0" expanded="true" />
@@ -920,6 +912,14 @@
             <element signature="e#2746#2747#0" expanded="true" />
             <element signature="e#2823#2824#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/groupone/ScheduleView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="73" column="27" lean-forward="false" selection-start-line="73" selection-start-column="27" selection-end-line="73" selection-end-column="27" />
+          <folding />
         </state>
       </provider>
     </entry>
