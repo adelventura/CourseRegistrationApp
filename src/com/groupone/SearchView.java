@@ -1,10 +1,12 @@
 package com.groupone;
 
+import com.groupone.middle.Methods;
 import com.groupone.middle.Student;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class SearchView extends JPanel {
     private JLabel titleLabel;
@@ -48,7 +50,10 @@ public class SearchView extends JPanel {
 
         JPanel centerPanel = new JPanel();
         centerPanel.setLayout(new GridLayout(6, 1));
-        JScrollPane scrollPane = new JScrollPane();
+
+        classListView = new ClassListView(new ArrayList<>());
+        JScrollPane scrollPane = new JScrollPane(classListView);
+
         add(scrollPane, BorderLayout.CENTER);
 
         JPanel panelControls = new JPanel();
@@ -82,7 +87,8 @@ public class SearchView extends JPanel {
     }
 
     private void search() {
-        JOptionPane.showMessageDialog(null, "todo: implement search");
+        ArrayList<Course> courses = Methods.selectAllCoursesFromASpecificDept(searchField.getText());
+        classListView.setCourses(courses);
     }
 
     private void exitSearch() {

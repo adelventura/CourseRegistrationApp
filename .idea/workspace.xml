@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d4e31977-ae22-44ed-9a8b-e8cfdba6afae" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/com/groupone/ScheduleView.java" afterPath="$PROJECT_DIR$/src/com/groupone/ScheduleView.java" />
       <change beforePath="$PROJECT_DIR$/src/com/groupone/SearchView.java" afterPath="$PROJECT_DIR$/src/com/groupone/SearchView.java" />
+      <change beforePath="$PROJECT_DIR$/src/com/groupone/middle/Methods.java" afterPath="$PROJECT_DIR$/src/com/groupone/middle/Methods.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -14,111 +14,17 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/groupone/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="8" lean-forward="false" selection-start-line="9" selection-start-column="8" selection-end-line="19" selection-end-column="31" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ClassListView.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/groupone/ClassListView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="12" lean-forward="false" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Methods.java" pinned="false" current-in-tab="false">
+    <leaf>
+      <file leaf-file-name="Methods.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/groupone/middle/Methods.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
-              <caret line="9" column="40" lean-forward="false" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="40" />
+            <state relative-caret-position="630">
+              <caret line="42" column="5" lean-forward="false" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <marker date="1531179518104" expanded="true" signature="1408:1467" ph="SELECT First... student_list" />
-                <marker date="1531179518104" expanded="true" signature="2337:2426" ph="SELECT * FRO... all_courses" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Student.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/groupone/middle/Student.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="577">
-              <caret line="146" column="32" lean-forward="false" selection-start-line="146" selection-start-column="32" selection-end-line="146" selection-end-column="32" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <marker date="1531179335229" expanded="true" signature="1261:1372" ph="INSERT INTO `students`.`student_list`... " />
-                <marker date="1531179335229" expanded="true" signature="2327:2719" ph="CREATE TABLE... missingValue" />
-                <marker date="1531179335229" expanded="true" signature="3860:4013" ph="SELECT * FRO... all_courses" />
-                <marker date="1531179335229" expanded="true" signature="4048:4650" ph="INSERT INTO `students`.`missingValue`... " />
-                <marker date="1531179335229" expanded="true" signature="4404:4441" ph="SELECT Cours... " />
-                <marker date="1531179335229" expanded="true" signature="6039:6181" ph="SELECT `Days... all_courses" />
-                <marker date="1531179335229" expanded="true" signature="7579:7619" ph="SELECT * FRO... missingValue" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Course.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/groupone/Course.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="22" lean-forward="false" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ScheduleView.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/groupone/ScheduleView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="296">
-              <caret line="73" column="27" lean-forward="false" selection-start-line="73" selection-start-column="27" selection-end-line="73" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SearchView.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/groupone/SearchView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="98" column="27" lean-forward="true" selection-start-line="98" selection-start-column="27" selection-end-line="98" selection-end-column="27" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2678#2679#0" expanded="true" />
-                <element signature="e#2717#2718#0" expanded="true" />
-                <element signature="e#2746#2747#0" expanded="true" />
-                <element signature="e#2823#2824#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ClassItemCell.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/groupone/ClassItemCell.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1465#1466#0" expanded="true" />
-                <element signature="e#1494#1495#0" expanded="true" />
-                <element signature="e#1529#1530#0" expanded="true" />
-                <element signature="e#1576#1577#0" expanded="true" />
+                <element signature="e#2254#2262#0" expanded="true" />
+                <marker date="1531189461112" expanded="true" signature="1398:1457" ph="SELECT First... student_list" />
+                <marker date="1531189461112" expanded="true" signature="2334:2403" ph="SELECT * FRO... all_courses" />
               </folding>
             </state>
           </provider>
@@ -161,10 +67,10 @@
         <option value="$PROJECT_DIR$/src/com/groupone/Course.java" />
         <option value="$PROJECT_DIR$/src/com/groupone/Main.java" />
         <option value="$PROJECT_DIR$/src/com/groupone/middle/Student.java" />
-        <option value="$PROJECT_DIR$/src/com/groupone/middle/Methods.java" />
         <option value="$PROJECT_DIR$/src/com/groupone/ClassItemCell.java" />
-        <option value="$PROJECT_DIR$/src/com/groupone/SearchView.java" />
         <option value="$PROJECT_DIR$/src/com/groupone/ScheduleView.java" />
+        <option value="$PROJECT_DIR$/src/com/groupone/middle/Methods.java" />
+        <option value="$PROJECT_DIR$/src/com/groupone/SearchView.java" />
       </list>
     </option>
   </component>
@@ -190,7 +96,7 @@
       <showLibraryContents />
       <hideEmptyPackages />
       <abbreviatePackageNames />
-      <autoscrollToSource />
+      <autoscrollToSource ProjectPane="true" />
       <autoscrollFromSource />
       <sortByType />
       <manualOrder />
@@ -222,10 +128,6 @@
               <item name="groupone" type="462c0819:PsiDirectoryNode" />
               <item name="middle" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="CourseRegistrationApp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -253,7 +155,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.tabs" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -326,12 +228,12 @@
       <option name="presentableId" value="Default" />
       <updated>1530735107896</updated>
       <workItem from="1530735112508" duration="4979000" />
-      <workItem from="1531172742966" duration="7230000" />
+      <workItem from="1531172742966" duration="8651000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24536000" />
+    <option name="totallyTimeSpent" value="25957000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="777" extended-state="6" />
@@ -590,8 +492,9 @@
           <caret line="28" column="7" lean-forward="true" selection-start-line="28" selection-start-column="7" selection-end-line="28" selection-end-column="7" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1531179518104" expanded="true" signature="1408:1467" ph="SELECT First... student_list" />
-            <marker date="1531179518104" expanded="true" signature="2337:2426" ph="SELECT * FRO... all_courses" />
+            <element signature="e#2254#2262#0" expanded="true" />
+            <marker date="1531189461112" expanded="true" signature="1398:1457" ph="SELECT First... student_list" />
+            <marker date="1531189461112" expanded="true" signature="2334:2403" ph="SELECT * FRO... all_courses" />
           </folding>
         </state>
       </provider>
@@ -767,14 +670,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home/src.zip!/java/util/ArrayList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="687" column="19" lean-forward="false" selection-start-line="687" selection-start-column="19" selection-end-line="687" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home/src.zip!/javax/swing/AbstractButton.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="89">
@@ -804,14 +699,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/groupone/Course.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="22" lean-forward="false" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/../mysql-connector-java-6.0.5.jar!/com/mysql/cj/jdbc/exceptions/SQLError.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6784">
@@ -838,22 +725,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/groupone/middle/Methods.java">
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home/src.zip!/java/util/ArrayList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="9" column="40" lean-forward="false" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="40" />
+        <state relative-caret-position="249">
+          <caret line="427" column="12" lean-forward="false" selection-start-line="427" selection-start-column="12" selection-end-line="427" selection-end-column="12" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <marker date="1531179518104" expanded="true" signature="1408:1467" ph="SELECT First... student_list" />
-            <marker date="1531179518104" expanded="true" signature="2337:2426" ph="SELECT * FRO... all_courses" />
+            <element signature="e#6252#6253#0" expanded="false" />
+            <element signature="e#6320#6321#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/groupone/middle/Student.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="577">
-          <caret line="146" column="32" lean-forward="false" selection-start-line="146" selection-start-column="32" selection-end-line="146" selection-end-column="32" />
+        <state relative-caret-position="-1306">
+          <caret line="118" column="30" lean-forward="true" selection-start-line="118" selection-start-column="30" selection-end-line="118" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
             <marker date="1531179335229" expanded="true" signature="1261:1372" ph="INSERT INTO `students`.`student_list`... " />
@@ -864,6 +750,14 @@
             <marker date="1531179335229" expanded="true" signature="6039:6181" ph="SELECT `Days... all_courses" />
             <marker date="1531179335229" expanded="true" signature="7579:7619" ph="SELECT * FRO... missingValue" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/groupone/ScheduleView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="318">
+          <caret line="52" column="38" lean-forward="true" selection-start-line="52" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -893,8 +787,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/groupone/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="8" lean-forward="false" selection-start-line="9" selection-start-column="8" selection-end-line="19" selection-end-column="31" />
+        <state relative-caret-position="300">
+          <caret line="20" column="5" lean-forward="true" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -903,23 +797,34 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/groupone/SearchView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="98" column="27" lean-forward="true" selection-start-line="98" selection-start-column="27" selection-end-line="98" selection-end-column="27" />
+        <state relative-caret-position="330">
+          <caret line="53" column="59" lean-forward="false" selection-start-line="53" selection-start-column="59" selection-end-line="53" selection-end-column="59" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2678#2679#0" expanded="true" />
-            <element signature="e#2717#2718#0" expanded="true" />
-            <element signature="e#2746#2747#0" expanded="true" />
-            <element signature="e#2823#2824#0" expanded="true" />
+            <element signature="e#2819#2820#0" expanded="true" />
+            <element signature="e#2858#2859#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/groupone/ScheduleView.java">
+    <entry file="file://$PROJECT_DIR$/src/com/groupone/Course.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="73" column="27" lean-forward="false" selection-start-line="73" selection-start-column="27" selection-end-line="73" selection-end-column="27" />
+        <state relative-caret-position="150">
+          <caret line="10" column="22" lean-forward="false" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/groupone/middle/Methods.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="42" column="5" lean-forward="false" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2254#2262#0" expanded="true" />
+            <marker date="1531189461112" expanded="true" signature="1398:1457" ph="SELECT First... student_list" />
+            <marker date="1531189461112" expanded="true" signature="2334:2403" ph="SELECT * FRO... all_courses" />
+          </folding>
         </state>
       </provider>
     </entry>

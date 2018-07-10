@@ -32,7 +32,7 @@ public class Methods {
 
     public static Connection connectToDeptTable(String user, String pass) {
         //connection string
-        String url = "jdbc:mysql://localhost:3306/department_tables";
+        String url = "jdbc:mysql://localhost:3306/students";
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(url, user, pass);
@@ -41,7 +41,6 @@ public class Methods {
         }
         return conn;
     }
-
 
     public static ArrayList<Student> getAllStudentInfo() {
         ArrayList<Student> students = new ArrayList<Student>();
@@ -66,10 +65,10 @@ public class Methods {
      * this method returns an array list of course objects, these course objects
      * hold the coures information of all courses of a specified department
      */
-    public ArrayList<Course> selectAllCoursesFromASpecificDept(String department) {
+    public static ArrayList<Course> selectAllCoursesFromASpecificDept(String department) {
         ArrayList<Course> allDeptCourses = new ArrayList<Course>();
         if (deptExists(department)) {
-            String sqlCode = "SELECT * FROM `department_tables`.`all_courses` WHERE `department` = '" + department + "'";
+            String sqlCode = "SELECT * FROM `all_courses` WHERE `department` = '" + department + "'";
             try (Connection conn = connectToDeptTable("root", "password")) {
                 Statement stmt = conn.createStatement();
                 ResultSet rs = stmt.executeQuery(sqlCode);
@@ -94,7 +93,7 @@ public class Methods {
     /*
      * this method verifies that the department passed through exists
      */
-    public boolean deptExists(String department) {
+    public static boolean deptExists(String department) {
         //checking to see if dept exists
         for (int i = 0; i < existingDepts.length; i++) {
             if (existingDepts[i].equals(department)) {
