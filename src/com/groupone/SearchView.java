@@ -15,6 +15,7 @@ public class SearchView extends JPanel {
     private JLabel searchLabel;
     private JButton searchButton;
     private JButton clearButton;
+    private JButton addButton;
     private JButton returnButton;
     private ClassListView classListView;
     public Student student;
@@ -58,7 +59,9 @@ public class SearchView extends JPanel {
         add(scrollPane, BorderLayout.CENTER);
 
         JPanel panelControls = new JPanel();
+        addButton = new JButton("Add to Schedule");
         returnButton = new JButton("Return to View Schedule");
+        panelControls.add(addButton);
         panelControls.add(returnButton);
 
         add(panelControls, BorderLayout.SOUTH);
@@ -67,6 +70,7 @@ public class SearchView extends JPanel {
         searchButton.addActionListener(listener);
         clearButton.addActionListener(listener);
         returnButton.addActionListener(listener);
+        addButton.addActionListener(listener);
 
     }
 
@@ -79,6 +83,8 @@ public class SearchView extends JPanel {
                 clear();
             } else if (source == returnButton) {
                 exitSearch();
+            } else if (source == addButton) {
+                add();
             }
         }
     }

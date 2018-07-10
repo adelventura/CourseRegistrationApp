@@ -214,7 +214,7 @@ public class Student {
         }
 
         courses = new ArrayList<>();
-        
+
         //selecting all information from student's table
         String sqlCode = "SELECT * FROM `" + studentCourseTbl + "`";
         try (Connection conn = Methods.connectToStudentsTable("root", "password")) {

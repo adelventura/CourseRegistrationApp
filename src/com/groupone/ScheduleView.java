@@ -40,13 +40,12 @@ public class ScheduleView extends JPanel {
         labelPanel.add(new ClassItemCell("Name", "Department", "Room", "Time", "Day", false));
         add(labelPanel, BorderLayout.NORTH);
 
-        addButton = new JButton("Add");
-        dropButton = new JButton("Drop");
+        dropButton = new JButton("Drop Selected Courses");
+        addButton = new JButton("Go to Course Lookup");
 
         JPanel controls = new JPanel();
-        controls.setLayout(new GridLayout(1, 2));
-        controls.add(addButton);
         controls.add(dropButton);
+        controls.add(addButton);
 
         add(controls, BorderLayout.SOUTH);
 
