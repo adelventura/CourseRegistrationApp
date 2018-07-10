@@ -16,7 +16,9 @@ public class SearchView extends JPanel {
     private ClassListView classListView;
     public Student student;
 
-    public SearchView() {
+    public SearchView(Student student) {
+        this.student = student;
+
         setLayout(new BorderLayout());
 
         JPanel labelPanel = new JPanel();
@@ -84,7 +86,15 @@ public class SearchView extends JPanel {
     }
 
     private void exitSearch() {
-        JOptionPane.showMessageDialog(null, "todo: return to schedule page");
+        JFrame frame = new JFrame("Course Registration");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        ScheduleView panel = new ScheduleView(student);
+        frame.getContentPane().add(panel);
+        frame.pack();
+        frame.setSize(800, 500);
+
+        frame.setVisible(true);
     }
 
 }

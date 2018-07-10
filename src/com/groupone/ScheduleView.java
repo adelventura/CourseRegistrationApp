@@ -61,7 +61,15 @@ public class ScheduleView extends JPanel {
     }
 
     private void add() {
-        JOptionPane.showMessageDialog(null, "todo: go to the add courses page");
+        JFrame frame = new JFrame("Course Registration");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        SearchView panel = new SearchView(student);
+        frame.getContentPane().add(panel);
+        frame.pack();
+        frame.setSize(800, 500);
+
+        frame.setVisible(true);
     }
 
     private void drop() {
