@@ -34,7 +34,7 @@ public class SearchView extends JPanel {
 
         searchButton = new JButton("Search");
         clearButton = new JButton("Clear");
-        searchLabel = new JLabel("Search:    ", JLabel.CENTER);
+        searchLabel = new JLabel("Search Department:    ", JLabel.CENTER);
         searchField = new JTextField();
         searchField.setBounds(5, 5, 75, 50);
 
