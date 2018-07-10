@@ -2,6 +2,7 @@ package com.groupone.middle;
 
 import com.groupone.Course;
 
+import javax.swing.*;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -14,7 +15,7 @@ public class Student {
     public String lastName;
     public String email;
     public String studentCourseTbl;
-    public ArrayList<Course> courses = new ArrayList<Course>();
+    public ArrayList<Course> courses;
 
     public Student(String firstName, String lastName, String email) {
         this.firstName = firstName;
@@ -145,6 +146,7 @@ public class Student {
             }
         } else {
             System.out.println("Time conflict.");
+            JOptionPane.showMessageDialog(null, "Time Conflict");
         }
 
     }
@@ -207,7 +209,12 @@ public class Student {
      * with the information
      */
     public ArrayList<Course> getStudentsCurrentCourseList() {
+        if (courses != null) {
+            return courses;
+        }
 
+        courses = new ArrayList<>();
+        
         //selecting all information from student's table
         String sqlCode = "SELECT * FROM `" + studentCourseTbl + "`";
         try (Connection conn = Methods.connectToStudentsTable("root", "password")) {

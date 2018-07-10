@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class SearchView extends JPanel {
@@ -89,6 +90,13 @@ public class SearchView extends JPanel {
     private void search() {
         ArrayList<Course> courses = Methods.selectAllCoursesFromASpecificDept(searchField.getText());
         classListView.setCourses(courses);
+    }
+
+    private void add() {
+        ArrayList<Course> addedCourses = classListView.selectedCourses();
+        for (Course course : addedCourses) {
+            student.addCourseToExistingCourseList(course.courseNum, course.department);
+        }
     }
 
     private void exitSearch() {

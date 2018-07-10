@@ -2,6 +2,7 @@ package com.groupone.middle;
 
 import com.groupone.Course;
 
+import javax.swing.*;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -82,7 +83,7 @@ public class Methods {
                 System.out.println(e.getMessage());
             }
         } else {
-            System.out.println("Department is not listed in Database. Please enter a department that exists.");
+            JOptionPane.showMessageDialog(null, "Department is not listed in Database. Please enter a department that exists.");
         }
 
         return allDeptCourses;
