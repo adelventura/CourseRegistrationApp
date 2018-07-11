@@ -13,6 +13,7 @@ public class SearchView extends JPanel {
     private JLabel titleLabel;
     private JTextField searchField;
     private JLabel searchLabel;
+    private JLabel blankLabel;
     private JButton searchButton;
     private JButton clearButton;
     private JButton addButton;
@@ -34,7 +35,7 @@ public class SearchView extends JPanel {
 
         searchButton = new JButton("Search");
         clearButton = new JButton("Clear");
-        searchLabel = new JLabel("Search:    ", JLabel.CENTER);
+        searchLabel = new JLabel("Search by Department:    ", JLabel.RIGHT);
         searchField = new JTextField();
         searchField.setBounds(5, 5, 75, 50);
 
@@ -46,8 +47,7 @@ public class SearchView extends JPanel {
 
         labelPanel.add(titleLabel);
         labelPanel.add(searchControls);
-        // TODO: update column headers for additional fields
-        labelPanel.add(new ClassItemCell("Name", "Department", "Room", "Time", "Day", false));
+        labelPanel.add(new ClassItemCell("Name", "Department", "Room", "Time", "Day", "Course Number", "Instructor", "Credits", false));
         add(labelPanel, BorderLayout.NORTH);
 
         JPanel centerPanel = new JPanel();
@@ -59,9 +59,11 @@ public class SearchView extends JPanel {
         add(scrollPane, BorderLayout.CENTER);
 
         JPanel panelControls = new JPanel();
-        addButton = new JButton("Add to Schedule");
+        addButton = new JButton("Add Selection to Schedule");
+        blankLabel = new JLabel("     ", JLabel.CENTER);
         returnButton = new JButton("Return to View Schedule");
         panelControls.add(addButton);
+        panelControls.add(blankLabel);
         panelControls.add(returnButton);
 
         add(panelControls, BorderLayout.SOUTH);
@@ -118,5 +120,4 @@ public class SearchView extends JPanel {
         JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
         topFrame.dispose();
     }
-
 }

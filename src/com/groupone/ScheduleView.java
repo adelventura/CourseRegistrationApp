@@ -13,6 +13,7 @@ public class ScheduleView extends JPanel {
 
     private JLabel titleLabel;
     private JLabel nameLabel;
+    private JLabel blankLabel;
     private JButton addButton;
     private ClassListView classListView;
     private JButton dropButton;
@@ -25,26 +26,23 @@ public class ScheduleView extends JPanel {
 
         JPanel labelPanel = new JPanel();
         labelPanel.setLayout(new GridLayout(3, 1));
-        titleLabel = new JLabel("Schedule Page", JLabel.LEFT);
+        titleLabel = new JLabel(" Schedule Page", JLabel.LEFT);
         titleLabel.setFont(new Font(titleLabel.getFont().getName(), Font.PLAIN, 30));
-        nameLabel = new JLabel("Hi, " + student.firstName + " " + student.lastName, JLabel.LEFT);
+        nameLabel = new JLabel("   Hi, " + student.firstName + " " + student.lastName, JLabel.LEFT);
 
         labelPanel.add(titleLabel);
         labelPanel.add(nameLabel);
-        
-        
-        //NOTE: the other fields need to be added to the label such as:
-        // Course Number, credits, instructor
-        
-        
-        labelPanel.add(new ClassItemCell("Name", "Department", "Room", "Time", "Day", false));
+
+        labelPanel.add(new ClassItemCell("Name", "Department", "Room", "Time", "Day", "Course Number", "Instructor", "Credits", false));
         add(labelPanel, BorderLayout.NORTH);
 
-        dropButton = new JButton("Drop Selected Courses");
+        dropButton = new JButton("Drop Selection from Schedule");
+        blankLabel = new JLabel("     ", JLabel.CENTER);
         addButton = new JButton("Go to Course Lookup");
 
         JPanel controls = new JPanel();
         controls.add(dropButton);
+        controls.add(blankLabel);
         controls.add(addButton);
 
         add(controls, BorderLayout.SOUTH);

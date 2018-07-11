@@ -3,11 +3,6 @@ package com.groupone;
 import javax.swing.*;
 import java.awt.*;
 
-
-//NOTE: needs to have lables for the rest of the fields, like instructor, credits, etc (you can find all the needed fields in the course class)
-
-
-
 public class ClassItemCell extends JPanel {
 
     private Course course;
@@ -17,14 +12,17 @@ public class ClassItemCell extends JPanel {
     JLabel roomLabel;
     JLabel timeLabel;
     JLabel dayLabel;
+    JLabel courseNumLabel;
+    JLabel instructorLabel;
+    JLabel creditLabel;
     JCheckBox selectedBox;
 
     public ClassItemCell(Course course) {
-        this(course.name, course.department, Integer.toString(course.room), course.time, course.day, true);
+        this(course.name, course.department, Integer.toString(course.room), course.time, course.day, Integer.toString(course.courseNum), course.instructor, Integer.toString(course.credits), true);
         this.course = course;
     }
 
-    public ClassItemCell(String name, String department, String room, String time, String day, boolean showBox) {
+    public ClassItemCell(String name, String department, String room, String time, String day, String courseNum, String instructor, String credits, boolean showBox) {
         setLayout(new GridLayout(1, 6));
 
         nameLabel = new JLabel(name, JLabel.CENTER);
@@ -32,12 +30,18 @@ public class ClassItemCell extends JPanel {
         roomLabel = new JLabel(room, JLabel.CENTER);
         timeLabel = new JLabel(time, JLabel.LEFT);
         dayLabel = new JLabel(day, JLabel.CENTER);
+        courseNumLabel = new JLabel(courseNum, JLabel.CENTER);
+        instructorLabel = new JLabel(instructor, JLabel.CENTER);
+        creditLabel = new JLabel(credits, JLabel.CENTER);
 
         add(nameLabel);
         add(departmentLabel);
         add(roomLabel);
         add(timeLabel);
         add(dayLabel);
+        add(courseNumLabel);
+        add(instructorLabel);
+        add(creditLabel);
 
         if (showBox) {
             selectedBox = new JCheckBox();
