@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d4e31977-ae22-44ed-9a8b-e8cfdba6afae" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/com/groupone/ClassItemCell.java" afterPath="$PROJECT_DIR$/src/com/groupone/ClassItemCell.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/groupone/Course.java" afterPath="$PROJECT_DIR$/src/com/groupone/Course.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/groupone/ScheduleView.java" afterPath="$PROJECT_DIR$/src/com/groupone/ScheduleView.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/groupone/SearchView.java" afterPath="$PROJECT_DIR$/src/com/groupone/SearchView.java" />
-    </list>
+    <list default="true" id="d4e31977-ae22-44ed-9a8b-e8cfdba6afae" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,8 +15,8 @@
       <file leaf-file-name="ScheduleView.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/groupone/ScheduleView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="39">
-              <caret line="30" column="34" lean-forward="false" selection-start-line="30" selection-start-column="34" selection-end-line="30" selection-end-column="34" />
+            <state relative-caret-position="313">
+              <caret line="40" column="55" lean-forward="true" selection-start-line="40" selection-start-column="55" selection-end-line="40" selection-end-column="55" />
               <folding />
             </state>
           </provider>
@@ -226,12 +221,12 @@
       <updated>1530735107896</updated>
       <workItem from="1530735112508" duration="4979000" />
       <workItem from="1531172742966" duration="10194000" />
-      <workItem from="1531193839132" duration="4212000" />
+      <workItem from="1531193839132" duration="4283000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31712000" />
+    <option name="totallyTimeSpent" value="31783000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="777" extended-state="0" />
@@ -814,8 +809,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/groupone/ScheduleView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="39">
-          <caret line="30" column="34" lean-forward="false" selection-start-line="30" selection-start-column="34" selection-end-line="30" selection-end-column="34" />
+        <state relative-caret-position="313">
+          <caret line="40" column="55" lean-forward="true" selection-start-line="40" selection-start-column="55" selection-end-line="40" selection-end-column="55" />
           <folding />
         </state>
       </provider>
