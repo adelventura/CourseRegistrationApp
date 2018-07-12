@@ -46,7 +46,7 @@ public class ScheduleView extends JPanel {
 
         add(controls, BorderLayout.SOUTH);
 
-        classListView = new ClassListView(student.getStudentsCurrentCourseList());
+        classListView = new ClassListView(student.getStudentsCurrentCourseList(), "Drop");
         JScrollPane scrollPane = new JScrollPane(classListView);
 
         ButtonListener listener = new ButtonListener();

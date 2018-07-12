@@ -11,11 +11,14 @@ public class ClassListView extends JPanel {
 
     private JTable table;
 
+    private String selectionType;
     private ArrayList<Course> courses;
     private Boolean[] selectedCell;
 
-    public ClassListView(ArrayList<Course> courses) {
+    public ClassListView(ArrayList<Course> courses, String selectionType) {
         setLayout(new BorderLayout());
+
+        this.selectionType = selectionType;
 
         table = new JTable();
         add(table.getTableHeader(), BorderLayout.PAGE_START);
@@ -34,7 +37,6 @@ public class ClassListView extends JPanel {
                 "Course Number",
                 "Instructor",
                 "Credits",
-                "Drop"
         };
 
         this.courses = courses;
@@ -44,10 +46,14 @@ public class ClassListView extends JPanel {
         }
 
         AbstractTableModel model = new AbstractTableModel() {
-            public int getColumnCount() { return columns.length; }
+            public int getColumnCount() { return columns.length + 1; }
             public int getRowCount() { return courses.size(); }
 
             public String getColumnName(int col) {
+                if (col == 8) {
+                    return selectionType;
+                }
+
                 return columns[col];
             }
 

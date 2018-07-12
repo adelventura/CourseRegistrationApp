@@ -52,7 +52,7 @@ public class SearchView extends JPanel {
         JPanel centerPanel = new JPanel();
         centerPanel.setLayout(new GridLayout(6, 1));
 
-        classListView = new ClassListView(new ArrayList<>());
+        classListView = new ClassListView(new ArrayList<>(), "Add");
         JScrollPane scrollPane = new JScrollPane(classListView);
 
         add(scrollPane, BorderLayout.CENTER);
