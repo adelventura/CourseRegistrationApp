@@ -27,7 +27,7 @@ public class SearchView extends JPanel {
         setLayout(new BorderLayout());
 
         JPanel labelPanel = new JPanel();
-        labelPanel.setLayout(new GridLayout(3, 1));
+        labelPanel.setLayout(new GridLayout(2, 1));
         titleLabel = new JLabel(" Course Lookup", JLabel.LEFT);
         titleLabel.setFont(new Font(titleLabel.getFont().getName(), Font.PLAIN, 30));
 
@@ -47,7 +47,6 @@ public class SearchView extends JPanel {
 
         labelPanel.add(titleLabel);
         labelPanel.add(searchControls);
-        labelPanel.add(new ClassItemCell("Name", "Department", "Room", "Time", "Day", "Course Number", "Instructor", "Credits", false));
         add(labelPanel, BorderLayout.NORTH);
 
         JPanel centerPanel = new JPanel();

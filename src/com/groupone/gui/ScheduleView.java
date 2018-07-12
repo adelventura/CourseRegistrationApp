@@ -25,7 +25,7 @@ public class ScheduleView extends JPanel {
         setLayout(new BorderLayout());
 
         JPanel labelPanel = new JPanel();
-        labelPanel.setLayout(new GridLayout(3, 1));
+        labelPanel.setLayout(new GridLayout(2, 1));
         titleLabel = new JLabel(" Schedule Page", JLabel.LEFT);
         titleLabel.setFont(new Font(titleLabel.getFont().getName(), Font.PLAIN, 30));
         nameLabel = new JLabel("   Hi, " + student.firstName + " " + student.lastName, JLabel.LEFT);
@@ -33,7 +33,6 @@ public class ScheduleView extends JPanel {
         labelPanel.add(titleLabel);
         labelPanel.add(nameLabel);
 
-        labelPanel.add(new ClassItemCell("Name               ", "Department", "Room", "Time", "Day", "Course Number", "Instructor", "Credits", false));
         add(labelPanel, BorderLayout.NORTH);
 
         dropButton = new JButton("Drop Selection from Schedule");
