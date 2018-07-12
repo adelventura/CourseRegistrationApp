@@ -1,15 +1,10 @@
 package com.groupone.gui;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import java.awt.BorderLayout;
 import java.awt.GridBagLayout;
-import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
@@ -49,7 +44,8 @@ public class LandingPage extends JPanel {
 		panel.setLayout(gbl_panel);
 		
 		btnSignIn = new JButton("Sign In");
-		
+		btnSignIn.addActionListener(new ButtonClickListener());
+
 		JLabel lblCourseRegistration = new JLabel("Course Registration");
 		lblCourseRegistration.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
@@ -74,7 +70,8 @@ public class LandingPage extends JPanel {
 		panel.add(btnSignIn, gbc_btnSignIn);
 		
 		btnCreateAccount = new JButton("Create Account");
-		
+		btnCreateAccount.addActionListener(new ButtonClickListener());
+
 		// GridBag Constraints for the Create Account button
 		
 		GridBagConstraints gbc_btnCreateAccount = new GridBagConstraints();
@@ -89,17 +86,26 @@ public class LandingPage extends JPanel {
 	/*
 	 *  Action Listener that listens for when either the Sign In or Create Account buttons are clicked
 	 */
-	
+
+	private void signIn() {
+		// Opens the Sign In window
+		SignInWindow openSignInWindow = new SignInWindow();
+		openSignInWindow.setVisible(true);
+
+		JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+		topFrame.dispose();
+	}
+
 	public class ButtonClickListener implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
 			Object source = event.getSource();
-			if(source == "btnSignIn") {
+			if(source == btnSignIn) {
 				// Opens the Sign In window
-				SignInWindow openSignInWindow = new SignInWindow();
-				openSignInWindow.setVisible(true);
+				signIn();
 			}
-			else if(source == "btnCreateAccount") {
+			else if(source == btnCreateAccount) {
 				// TODO: create a new window to create an account
+				JOptionPane.showMessageDialog(null, "Not available");
 			}
 		}
 		

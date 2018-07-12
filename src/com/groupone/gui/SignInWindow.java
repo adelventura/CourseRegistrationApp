@@ -1,12 +1,10 @@
 package com.groupone.gui;
-import com.groupone.*;
+import com.groupone.ScheduleView;
+import com.groupone.middle.Student;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.sql.*;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-import com.jgoodies.forms.layout.FormSpecs;
 import java.awt.*;
 import java.awt.event.*;
 
@@ -23,6 +21,7 @@ public class SignInWindow extends JFrame {
 	
 	private JPasswordField password;
 	private JTextField username;
+	private JButton btnSignIn;
 
 	// variables for the inputs of the text fields
 	
@@ -149,7 +148,7 @@ public class SignInWindow extends JFrame {
 		
 		loginFormPanel.add(password, gbc_password);
 		
-		JButton btnSignIn = new JButton("Sign In");
+		btnSignIn = new JButton("Sign In");
 		btnSignIn.addActionListener(new ButtonClickListener());
 		
 		GridBagConstraints gbc_btnSignIn = new GridBagConstraints();
@@ -169,9 +168,7 @@ public class SignInWindow extends JFrame {
 	
 	public class ButtonClickListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			if(e.getSource()=="btnSignIn") {
-				studentID = Integer.parseInt(username.getText());
-				doesIdExist(studentID);
+			if(e.getSource()==btnSignIn) {
 				checkLoginInfo();
 			}
 		}
@@ -214,26 +211,50 @@ public class SignInWindow extends JFrame {
 	 */
 	
 	private boolean checkLoginInfo() {
-		
-		boolean loginInfo = false;
-		Connection connectToStudents = null;
-		PreparedStatement preparedStm = null;
-		
-		studentID = Integer.parseInt(username.getText());
-		studentPassword = new String(password.getPassword());
-		
-		if(doesIdExist(studentID)) {
-			try {
-				
-				// TODO: Query database for the student's password to compare it with the given password
-				
-				loginInfo = true;
-				
-			} catch(Exception e) {
-				JOptionPane.showMessageDialog(null, e.getMessage());
-			}
-			
+		// TODO: use commented code below when database ready. This is just some hardcoded login
+		//	for testing
+		String username = this.username.getText();
+		String password = new String(this.password.getPassword());
+
+		if (username.equals("James") && password.equals("password")) {
+			JFrame frame = new JFrame("Course Registration");
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+			Student student = new Student("James", "Lee", "jamesl@gmail.com");
+			ScheduleView panel = new ScheduleView(student);
+			frame.getContentPane().add(panel);
+			frame.pack();
+			frame.setSize(800, 500);
+
+			frame.setVisible(true);
+
+			dispose();
+
+			return true;
+		} else {
+			JOptionPane.showMessageDialog(null, "Incorrect Username/Password");
+
+			return false;
 		}
-		return loginInfo;
+
+		//		boolean loginInfo = false;
+//		Connection connectToStudents = null;
+//		PreparedStatement preparedStm = null;
+//
+//		studentID = Integer.parseInt(username.getText());
+//		studentPassword = new String(password.getPassword());
+//
+//		if(doesIdExist(studentID)) {
+//			try {
+//				// TODO: Query database for the student's password to compare it with the given password
+//
+//				loginInfo = true;
+//
+//			} catch(Exception e) {
+//				JOptionPane.showMessageDialog(null, e.getMessage());
+//			}
+//
+//		}
+//		return loginInfo;
 	}
 }

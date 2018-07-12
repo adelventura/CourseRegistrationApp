@@ -33,7 +33,7 @@ public class ScheduleView extends JPanel {
         labelPanel.add(titleLabel);
         labelPanel.add(nameLabel);
 
-        labelPanel.add(new ClassItemCell("Name", "Department", "Room", "Time", "Day", "Course Number", "Instructor", "Credits", false));
+        labelPanel.add(new ClassItemCell("Name               ", "Department", "Room", "Time", "Day", "Course Number", "Instructor", "Credits", false));
         add(labelPanel, BorderLayout.NORTH);
 
         dropButton = new JButton("Drop Selection from Schedule");

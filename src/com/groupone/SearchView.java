@@ -28,7 +28,7 @@ public class SearchView extends JPanel {
 
         JPanel labelPanel = new JPanel();
         labelPanel.setLayout(new GridLayout(3, 1));
-        titleLabel = new JLabel("Course Lookup", JLabel.LEFT);
+        titleLabel = new JLabel(" Course Lookup", JLabel.LEFT);
         titleLabel.setFont(new Font(titleLabel.getFont().getName(), Font.PLAIN, 30));
 
         JPanel searchControls = new JPanel();
