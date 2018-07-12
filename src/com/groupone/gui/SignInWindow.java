@@ -145,10 +145,24 @@ public class SignInWindow extends JFrame {
 		gbc_password.gridx = 4;
 		gbc_password.gridy = 5;
 		
+		/*
+		 * Below is an Key Listener for the password field
+		 * It allows a user to press the enter key to sign in instead of only clicking the sign in button
+		 */
+		
+		password.addKeyListener(new KeyAdapter()  {
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode()==KeyEvent.VK_ENTER) {
+					checkLoginInfo();
+				}
+			}
+		});
+		
 		loginFormPanel.add(password, gbc_password);
 		
+		
 		btnSignIn = new JButton("Sign In");
-		btnSignIn.addActionListener(new ButtonClickListener());
+		btnSignIn.addActionListener(new myListener());
 		
 		GridBagConstraints gbc_btnSignIn = new GridBagConstraints();
 		gbc_btnSignIn.gridheight = 2;
@@ -165,13 +179,12 @@ public class SignInWindow extends JFrame {
 	 *  It then calls doesIdExist and checkLoginInfo
 	 */
 	
-	public class ButtonClickListener implements ActionListener {
+	public class myListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource()==btnSignIn) {
 				checkLoginInfo();
 			}
-		}
-		
+		}		
 	}
 	
 	/* 
