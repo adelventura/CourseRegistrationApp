@@ -63,7 +63,7 @@ public class ScheduleView extends JPanel {
         SearchView panel = new SearchView(student);
         frame.getContentPane().add(panel);
         frame.pack();
-        frame.setSize(800, 500);
+        frame.setSize(900, 500);
 
         frame.setVisible(true);
         JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);

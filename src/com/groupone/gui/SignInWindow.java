@@ -66,7 +66,7 @@ public class SignInWindow extends JFrame {
 	public SignInWindow() {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 450, 200);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -223,7 +223,7 @@ public class SignInWindow extends JFrame {
 			ScheduleView panel = new ScheduleView(student);
 			frame.getContentPane().add(panel);
 			frame.pack();
-			frame.setSize(800, 500);
+			frame.setSize(900, 500);
 
 			frame.setVisible(true);
 
