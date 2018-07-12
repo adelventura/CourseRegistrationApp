@@ -10,24 +10,13 @@ import javax.swing.*;
 public class Main {
 
     public static void main(String[] args) {
-//        JFrame frame = new JFrame("Course Registration");
-//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//
-//        LandingPage panel = new LandingPage();
-//        frame.getContentPane().add(panel);
-//        frame.pack();
-//        frame.setSize(200, 120);
-//
-//        frame.setVisible(true);
-
         JFrame frame = new JFrame("Course Registration");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        Student student = new Student("James", "Lee", "jamesl@gmail.com");
-        ScheduleView panel = new ScheduleView(student);
+        LandingPage panel = new LandingPage();
         frame.getContentPane().add(panel);
         frame.pack();
-        frame.setSize(800, 500);
+        frame.setSize(200, 120);
 
         frame.setVisible(true);
     }
