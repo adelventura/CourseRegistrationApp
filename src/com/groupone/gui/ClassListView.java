@@ -4,6 +4,7 @@ import com.groupone.middle.Course;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -99,6 +100,11 @@ public class ClassListView extends JPanel {
         };
 
         table.setModel(model);
+
+        TableColumnModel columnModel = table.getColumnModel();
+        columnModel.getColumn(0).setPreferredWidth(180);
+        columnModel.getColumn(3).setPreferredWidth(180);
+        columnModel.getColumn(5).setPreferredWidth(60);
     }
 
     public ArrayList<Course> selectedCourses() {
