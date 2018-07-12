@@ -1,5 +1,4 @@
 package com.groupone.gui;
-import com.groupone.ScheduleView;
 import com.groupone.middle.Student;
 
 import javax.swing.*;

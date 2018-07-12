@@ -1,4 +1,6 @@
-package com.groupone;
+package com.groupone.gui;
+
+import com.groupone.middle.Course;
 
 import javax.swing.*;
 import java.util.ArrayList;

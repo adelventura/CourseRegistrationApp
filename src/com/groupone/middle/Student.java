@@ -1,7 +1,5 @@
 package com.groupone.middle;
 
-import com.groupone.Course;
-
 import javax.swing.*;
 import java.sql.*;
 import java.util.ArrayList;

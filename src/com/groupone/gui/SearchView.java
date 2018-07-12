@@ -1,12 +1,12 @@
-package com.groupone;
+package com.groupone.gui;
 
+import com.groupone.middle.Course;
 import com.groupone.middle.Methods;
 import com.groupone.middle.Student;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class SearchView extends JPanel {

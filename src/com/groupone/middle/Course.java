@@ -1,4 +1,4 @@
-package com.groupone;
+package com.groupone.middle;
 
 import java.sql.*;
 
