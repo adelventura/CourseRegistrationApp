@@ -12,14 +12,14 @@ public class Student {
     public String firstName;
     public String lastName;
     public String email;
-    public String studentCourseTbl;
+    public static String studentCourseTbl;
     public ArrayList<Course> courses;
 
     public Student(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.studentCourseTbl = lastName.toLowerCase() + "_table";
+        studentCourseTbl = lastName.toLowerCase() + "_table";
         //when a new student is created, he/she is automatically added to student database
         addStudentInfoToStudentsTable();
     }
@@ -97,7 +97,7 @@ public class Student {
 	 */
 	
 	public static void deleteCourseFromCourseList(int courseNum, String department) {
-		String sqlCode = "DELETE FROM `students`.`\"+studentCourseTbl+\"` "
+		String sqlCode = "DELETE FROM `students`.`"+studentCourseTbl+"` "
 				+ "WHERE `Course_Num` = '"+courseNum+"' AND `department` ="
 						+ "'"+department+"'";
 		try(Connection conn = Methods.connectToStudentsTable("root", "password")){
