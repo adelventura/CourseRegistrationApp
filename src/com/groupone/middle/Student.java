@@ -102,7 +102,7 @@ public class Student {
 						+ "'"+department+"'";
 		try(Connection conn = Methods.connectToStudentsTable("root", "password")){
 			PreparedStatement pstmt = conn.prepareStatement(sqlCode);
-			pstmt.executeQuery();
+			pstmt.executeUpdate();
 		}catch(SQLException e) {
 			System.out.println(e.getMessage());
 		}
