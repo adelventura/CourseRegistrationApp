@@ -89,8 +89,10 @@ public class ScheduleView extends JPanel {
     }
 
    public void dropCourses(ArrayList<Course> coursesToDrop) {
-        // TODO: change database
         student.getStudentsCurrentCourseList().removeAll(coursesToDrop);
+        //deletes courses from student course list in database
+        Student.deleteCourses(coursesToDrop);
     }
+
 
 }
