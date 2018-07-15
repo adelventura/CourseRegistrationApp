@@ -91,7 +91,35 @@ public class Student {
             System.out.println(e.getMessage());
         }
     }
-
+	/*
+	 * This method receives a course number and a department as arguments and deletes
+	 * the specified lines from the database
+	 */
+	
+	public static void deleteCourseFromCourseList(int courseNum, String department) {
+		String sqlCode = "DELETE FROM `students`.`\"+studentCourseTbl+\"` "
+				+ "WHERE `Course_Num` = '"+courseNum+"' AND `department` ="
+						+ "'"+department+"'";
+		try(Connection conn = Methods.connectToStudentsTable("root", "password")){
+			PreparedStatement pstmt = conn.prepareStatement(sqlCode);
+			pstmt.executeQuery();
+		}catch(SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	/*
+	 * This method receives an array list of courses as an argument from a method that
+	 * connects to the GUI
+	 * The method then calls the deleteCourseFromCourseList for each element in the array list
+	 * deleting the courses fromt the student's course list in the database
+	 */
+	public static void deleteCourses(ArrayList<Course> CoursesToDrop) {
+		for(int i=0;i<CoursesToDrop.size(); i++) {
+			deleteCourseFromCourseList(CoursesToDrop.get(i).courseNum, CoursesToDrop.get(i).department);
+		}
+	}
+	
 
     /*
      * method adds a selected course to the student's course list
