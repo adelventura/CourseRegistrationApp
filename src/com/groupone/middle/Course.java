@@ -12,7 +12,7 @@ public class Course {
     public int credits;
     public String instructor;
 
-    public Course(String name, String department, int room, String time,
+    public Course (String name, String department, int room, String time,
                   String day, int courseNum, int credits, String instructor) {
         this.name = name;
         this.department = department;

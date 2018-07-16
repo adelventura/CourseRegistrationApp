@@ -162,8 +162,16 @@ public class Student {
 							pstmt.executeUpdate();
 							rs.previous();
 							while(rs.next()) {
-								Course course = new Course(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
-										rs.getInt(5), rs.getString(6), rs.getInt(7), rs.getString(8));
+								Course course = new Course(
+										rs.getString(2),
+										rs.getString(8),
+										rs.getInt(7),
+										rs.getString(4),
+										rs.getString(3),
+										rs.getInt(1),
+										rs.getInt(5),
+										rs.getString(6)
+								);
 								courses.add(course);
 								
 							}
