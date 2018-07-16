@@ -93,11 +93,15 @@ public class SearchView extends JPanel {
     private void clear() {
         searchField.setText("");
     }
+     private void search() {
+            ArrayList<Course> courses = Methods.selectAllCoursesFromASpecificDept(searchField.getText());
+            if(courses == null) {
+                JOptionPane.showMessageDialog(null, "Please enter a department that exists.");
+            }else {
+                classListView.setCourses(courses);
+            }
 
-    private void search() {
-        ArrayList<Course> courses = Methods.selectAllCoursesFromASpecificDept(searchField.getText());
-        classListView.setCourses(courses);
-    }
+        }
 
     private void add() {
         ArrayList<Course> addedCourses = classListView.selectedCourses();
