@@ -149,7 +149,7 @@ public class Student {
                     + "Instructor, "
                     + "Room_Number,"
                     + "department) "
-                    + "SELECT Course_Num, Course_Name, Days, Time, Credits, Instructor, Room_Number "
+                    + "SELECT Course_Num, Course_Name, Days, Time, Credits, Instructor, Room_Number, department "
                     + "FROM `department_tables`.`all_courses` WHERE `Course_Num` = '" + courseNum + "'"
                     + " AND `department` = '" + department + "'";
 
