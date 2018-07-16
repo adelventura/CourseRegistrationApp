@@ -82,6 +82,7 @@ public class Methods {
             }
         } else {
             JOptionPane.showMessageDialog(null, "Department is not listed in Database. Please enter a department that exists.");
+            return null;
         }
 
         return allDeptCourses;
