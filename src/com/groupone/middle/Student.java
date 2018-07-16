@@ -217,6 +217,19 @@ public class Student {
 		return false;
 	}
 	
+	/*
+	 * This method checks to see if the email already exists
+	 * returns true if the email does already exist, false if it doesn't
+	 */
+	
+	public boolean emailExists() {
+		for(Student students : Methods.getAllStudentInfo()) {
+			if(this.email.equals(students.email)) {
+				return true;
+			}
+		}return false;
+	}
+	
 
     /*
      * this method checks to see if student already exists in database
