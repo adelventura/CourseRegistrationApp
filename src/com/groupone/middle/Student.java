@@ -115,8 +115,8 @@ public class Student {
 	 * deleting the courses fromt the student's course list in the database
 	 */
 	public static void deleteCourses(ArrayList<Course> CoursesToDrop) {
-		for(int i=0;i<CoursesToDrop.size(); i++) {
-			deleteCourseFromCourseList(CoursesToDrop.get(i).courseNum, CoursesToDrop.get(i).department);
+		for(Course course : CoursesToDrop) {
+			deleteCourseFromCourseList(course.courseNum, course.department);
 		}
 	}
 	
