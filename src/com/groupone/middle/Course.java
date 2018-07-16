@@ -12,8 +12,8 @@ public class Course {
     public int credits;
     public String instructor;
 
-   public Course(int courseNum, String name, String day, String time, int credits, String instructor,
-    		int room, String department) {
+    public Course(String name, String department, int room, String time,
+                  String day, int courseNum, int credits, String instructor) {
         this.name = name;
         this.department = department;
         this.room = room;
