@@ -96,7 +96,7 @@ public class Methods {
     public static boolean deptExists(String department) {
         //checking to see if dept exists
         for (int i = 0; i < existingDepts.length; i++) {
-            if (existingDepts[i].equals(department)) {
+            if (existingDepts[i].equalsIgnoreCase(department)) {
                 return true;
             }
         }
