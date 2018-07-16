@@ -129,7 +129,8 @@ public class Student {
      * and also adds the course to the student's course list in the database
      */
     	public void addCourseToExistingCourseList(int courseNum, String department) {
-		
+			boolean timeConflict = false;
+			boolean preexisting = false;
 			//Adds the new course to the existing array list of student's courses
 			
 			//retrieving all information about specific course
@@ -156,27 +157,49 @@ public class Student {
 					//if there isn't a time conflict between class trying to be added and 
 					//existing courses, course is added to course list
 					rs.next();
-					if(!timeConflictExists(rs.getString(3), rs.getString(4))) {
-						pstmt.executeUpdate();
-						rs.previous();
-						while(rs.next()) {
-							Course course = new Course(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
-									rs.getInt(5), rs.getString(6), rs.getInt(7), rs.getString(8));
-							courses.add(course);
-							
+					if(!preexistingCourse(rs.getString(2))) {
+						if(!timeConflictExists(rs.getString(3), rs.getString(4))) {
+							pstmt.executeUpdate();
+							rs.previous();
+							while(rs.next()) {
+								Course course = new Course(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
+										rs.getInt(5), rs.getString(6), rs.getInt(7), rs.getString(8));
+								courses.add(course);
+								
+							}
+							JOptionPane.showMessageDialog(null, "Class added successfully.");
+						}else {
+							timeConflict = true;
 						}
-						JOptionPane.showMessageDialog(null, "Class added successfully.");
 					}else {
-						JOptionPane.showMessageDialog(null, "Time conflict.");
-					}	
+						preexisting = true;
+					}
 			} catch(SQLException e) {
 				System.out.println("add course to existing: "+e.getMessage());
 				if(e.getSQLState().equals("23000") && e.getErrorCode() == 1062) {
 					JOptionPane.showMessageDialog(null, "Course already exists.");
 				}
 			}
+			if(preexisting) {
+				JOptionPane.showMessageDialog(null, "Course already exists.");
+			}
+			
+			if(timeConflict) {
+				JOptionPane.showMessageDialog(null, "Time conflict.");
+			}
 		
 	}
+	
+	public boolean preexistingCourse(String name) {
+		ArrayList<Course> existingCourses = getStudentsCurrentCourseList();
+		for(Course course : existingCourses) {
+			if(name.equals(course.name)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	
 
 	/*
