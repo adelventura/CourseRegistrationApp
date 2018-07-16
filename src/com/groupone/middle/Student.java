@@ -198,18 +198,15 @@ public class Student {
     /*
      * this method checks to see if student already exists in database
      */
-    public boolean studentExists() {
-        ArrayList<Student> students = Methods.getAllStudentInfo();
-        for (int i = 0; i < students.size(); i++) {
-            if (this.firstName.equals(students.get(i).getFirstName())
-                    && this.lastName.equals(students.get(i).getLastName())) {
-                return true;
-            }
-        }
-
-        return false;
-
-    }
+  public boolean studentExists() {
+		for(Student students : Methods.getAllStudentInfo()) {
+			if(this.firstName.equals(students.firstName) 
+					&& this.lastName.equals(students.lastName)) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 
     /*
