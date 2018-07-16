@@ -170,6 +170,9 @@ public class Student {
 		    JOptionPane.showMessageDialog(null, "Class added successfully.");
             } catch (SQLException e) {
                 System.out.println("add course to existing: " + e.getMessage());
+		if(e.getSQLState().equals("23000") && e.getErrorCode() == 1062) {
+			JOptionPane.showMessageDialog(null, "Course already exists.");
+		}
             }
         } else {
             System.out.println("Time conflict.");
