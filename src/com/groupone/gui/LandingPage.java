@@ -95,6 +95,15 @@ public class LandingPage extends JPanel {
 		JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
 		topFrame.dispose();
 	}
+	
+	private void CreateAccount() {
+		// Opens the Create Account window
+		CreateAccountWindow openCreateAccountWindow = new CreateAccountWindow();
+		openCreateAccountWindow.setVisible(true);
+
+		JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+		topFrame.dispose();
+	}
 
 	public class ButtonClickListener implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
@@ -104,8 +113,7 @@ public class LandingPage extends JPanel {
 				signIn();
 			}
 			else if(source == btnCreateAccount) {
-				// TODO: create a new window to create an account
-				JOptionPane.showMessageDialog(null, "Not available");
+				CreateAccount();
 			}
 		}
 		
