@@ -128,91 +128,69 @@ public class Student {
      * if there isn't, it adds the course to the array list of the student's courses
      * and also adds the course to the student's course list in the database
      */
-    public void addCourseToExistingCourseList(int courseNum, String department) {
-
-        //if the student's course list exists and there is no time conflict between
-        //course wishing to be added and existing courses, adds course to course list
-        if (!timeConflictExists(courseNum, department)) {
-            //Adds the new course to the existing array list of student's courses
-
-            //retrieving all information about specific course
-            String sql = "SELECT * FROM `department_tables`.`all_courses` WHERE `Course_Num` = '" + courseNum + "'"
-                    + " AND `department` = '" + department + "'";
-
-
-            String sqlCode = "INSERT INTO `students`.`" + studentCourseTbl + "`("
-                    + "Course_Num, "
-                    + "Course_Name, "
-                    + "Days, "
-                    + "Time, "
-                    + "Credits,"
-                    + "Instructor, "
-                    + "Room_Number,"
-                    + "department) "
-                    + "SELECT Course_Num, Course_Name, Days, Time, Credits, Instructor, Room_Number, department "
-                    + "FROM `department_tables`.`all_courses` WHERE `Course_Num` = '" + courseNum + "'"
-                    + " AND `department` = '" + department + "'";
-
-            try (Connection conn = Methods.connectToStudentsTable("root", "password");
-                 PreparedStatement pstmt = conn.prepareStatement(sqlCode)) {
-                pstmt.executeUpdate();
-
-                //adding course to courses array list for student
-                Statement stmt = conn.createStatement();
-                ResultSet rs = stmt.executeQuery(sql);
-
-                while (rs.next()) {
-                    Course course = new Course(rs.getString(2), rs.getString(8), rs.getInt(7), rs.getString(4),
-                            rs.getString(3), rs.getInt(1), rs.getInt(5), rs.getString(6));
-                    courses.add(course);
-
-                }
-		    JOptionPane.showMessageDialog(null, "Class added successfully.");
-            } catch (SQLException e) {
-                System.out.println("add course to existing: " + e.getMessage());
-		if(e.getSQLState().equals("23000") && e.getErrorCode() == 1062) {
-			JOptionPane.showMessageDialog(null, "Course already exists.");
-		}
-            }
-        } else {
-            System.out.println("Time conflict.");
-            JOptionPane.showMessageDialog(null, "Time Conflict");
-        }
-
-    }
-
-
-    /*
-     * method checks to see if there is a time conflict between course wishing to be added
-     * and existing courses based on time and day of courses
-     * @param course number and course department
-     */
-   	public boolean timeConflictExists(int courseNum, String department) {
-		String daysOfAdded = "";
-		String timeOfAdded = "";
+    	public void addCourseToExistingCourseList(int courseNum, String department) {
 		
-		//getting day & time of course wishing to be added
-		String sqlCode = "SELECT `Days`, `Time` FROM `department_tables`.`all_courses` WHERE "
-				+ "`Course_Num` = '"+courseNum+"' AND `department` = '"+department+"'";
-		try(Connection conn = Methods.connectToDeptTable("root", "password")){
-			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery(sqlCode);
-			System.out.println("days "+rs.getString(1)+" time "+rs.getString(2));
-			daysOfAdded = rs.getString(1);
-			timeOfAdded = rs.getString(2);
-		}catch(SQLException e) {
-			System.out.println(e.getMessage());
-		}
+			//Adds the new course to the existing array list of student's courses
+			
+			//retrieving all information about specific course
+			String sql = "SELECT * FROM `department_tables`.`all_courses` WHERE `Course_Num` = '"+courseNum+"'"
+					+ " AND `department` = '"+department+"'";
+			String sqlCode = "INSERT INTO `students`.`"+studentCourseTbl+"`("
+					+ "Course_Num, "
+					+ "Course_Name, "
+					+ "Days, "
+					+ "Time, "
+					+ "Credits,"
+					+ "Instructor, "
+					+ "Room_Number,"
+					+ "department) "
+					+ "SELECT Course_Num, Course_Name, Days, Time, Credits, Instructor, Room_Number, department "
+					+ "FROM `department_tables`.`all_courses` WHERE `Course_Num` = '"+courseNum+"'"
+							+ " AND `department` = '"+department+"'";
+			
+			try(Connection conn = Methods.connectToStudentsTable("root", "password");
+					PreparedStatement pstmt = conn.prepareStatement(sqlCode)) {
+					//adding course to courses array list for student
+					Statement stmt = conn.createStatement();
+					ResultSet rs = stmt.executeQuery(sql);
+					//if there isn't a time conflict between class trying to be added and 
+					//existing courses, course is added to course list
+					rs.next();
+					if(!timeConflictExists(rs.getString(3), rs.getString(4))) {
+						pstmt.executeUpdate();
+						rs.previous();
+						while(rs.next()) {
+							Course course = new Course(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
+									rs.getInt(5), rs.getString(6), rs.getInt(7), rs.getString(8));
+							courses.add(course);
+							
+						}
+						JOptionPane.showMessageDialog(null, "Class added successfully.");
+					}else {
+						JOptionPane.showMessageDialog(null, "Time conflict.");
+					}	
+			} catch(SQLException e) {
+				System.out.println("add course to existing: "+e.getMessage());
+				if(e.getSQLState().equals("23000") && e.getErrorCode() == 1062) {
+					JOptionPane.showMessageDialog(null, "Course already exists.");
+				}
+			}
 		
-		//checking times & days to see if there are any conflicts
-		ArrayList<Course> courses = getStudentsCurrentCourseList();
-		for(Course course: courses) {
-			if(course.time.equals(timeOfAdded) && course.day.equals(daysOfAdded)) {
+	}
+	
+
+	/*
+	 * method checks to see if there is a time conflict between course wishing to be added
+	 * and existing courses based on time and day of courses
+	 * @param course number and course department
+	 */
+	public boolean timeConflictExists(String days, String time) {
+		ArrayList<Course> existingCourses = getStudentsCurrentCourseList();
+		for(Course course : existingCourses) {
+			if(days.equals(course.day) && time.equals(course.time)) {
 				return true;
 			}
 		}
-		
-		
 		return false;
 	}
 	
