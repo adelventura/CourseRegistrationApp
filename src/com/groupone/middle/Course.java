@@ -2,7 +2,9 @@ package com.groupone.middle;
 
 import java.sql.*;
 
+// object to hold data related to a course
 public class Course {
+
     public String name;
     public String department;
     public int room;
@@ -12,6 +14,7 @@ public class Course {
     public int credits;
     public String instructor;
 
+    // course constructor
     public Course (String name, String department, int room, String time,
                   String day, int courseNum, int credits, String instructor) {
         this.name = name;
@@ -22,8 +25,6 @@ public class Course {
         this.day = day;
         this.credits = credits;
         this.instructor = instructor;
-
     }
-
 
 }

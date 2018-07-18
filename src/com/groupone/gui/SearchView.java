@@ -10,6 +10,8 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class SearchView extends JPanel {
+
+    // ui component variables
     private JLabel titleLabel;
     private JTextField searchField;
     private JLabel searchLabel;
@@ -19,8 +21,10 @@ public class SearchView extends JPanel {
     private JButton addButton;
     private JButton returnButton;
     private ClassListView classListView;
+
     public Student student;
 
+    // SearchView constructor -- set up and lay out UI components
     public SearchView(Student student) {
         this.student = student;
 
@@ -52,6 +56,7 @@ public class SearchView extends JPanel {
         JPanel centerPanel = new JPanel();
         centerPanel.setLayout(new GridLayout(6, 1));
 
+        // add classListView to JScrollPane
         classListView = new ClassListView(new ArrayList<>(), "Add");
         JScrollPane scrollPane = new JScrollPane(classListView);
 
@@ -67,6 +72,7 @@ public class SearchView extends JPanel {
 
         add(panelControls, BorderLayout.SOUTH);
 
+        // add button listeners
         ButtonListener listener = new ButtonListener();
         searchButton.addActionListener(listener);
         clearButton.addActionListener(listener);
@@ -90,10 +96,15 @@ public class SearchView extends JPanel {
         }
     }
 
+    // clear button handler
+    // clears text from search field
     private void clear() {
         searchField.setText("");
     }
-     private void search() {
+
+    // search button handler
+    // passes search field to middle layer and updates search results
+    private void search() {
             ArrayList<Course> courses = Methods.selectAllCoursesFromASpecificDept(searchField.getText());
             if(courses == null) {
                 JOptionPane.showMessageDialog(null, "Please enter a department that exists.");
@@ -102,7 +113,8 @@ public class SearchView extends JPanel {
             }
 
         }
-
+    // add button handler
+    // grabs selected courses from classListView and gives to middle layer
     private void add() {
         ArrayList<Course> addedCourses = classListView.selectedCourses();
         for (Course course : addedCourses) {
@@ -114,6 +126,7 @@ public class SearchView extends JPanel {
         student.courses.addAll(addedCourses);
     }
 
+    // creates new ScheduleView window and closes SearchView window
     private void exitSearch() {
         JFrame frame = new JFrame("Course Registration");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -124,6 +137,7 @@ public class SearchView extends JPanel {
         frame.setSize(900, 500);
 
         frame.setVisible(true);
+        // grab current window (SearchView) and dispose of it
         JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
         topFrame.dispose();
     }

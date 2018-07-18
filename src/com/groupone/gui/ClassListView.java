@@ -10,12 +10,16 @@ import java.util.ArrayList;
 
 public class ClassListView extends JPanel {
 
+    // ui components
     private JTable table;
 
+    // private variables
     private String selectionType;
     private ArrayList<Course> courses;
     private Boolean[] selectedCell;
 
+    // constructor, set up initial table
+    // selection type determines what selection should say. ("drop" or "add")
     public ClassListView(ArrayList<Course> courses, String selectionType) {
         setLayout(new BorderLayout());
 
@@ -28,7 +32,9 @@ public class ClassListView extends JPanel {
         setCourses(courses);
     }
 
+    // update table with provided courses
     public void setCourses(ArrayList<Course> courses) {
+        // column headers
         String[] columns = {
                 "Name",
                 "Department",
@@ -41,11 +47,14 @@ public class ClassListView extends JPanel {
         };
 
         this.courses = courses;
+
+        // all courses start out not selected
         selectedCell = new Boolean[courses.size()];
         for (int i = 0; i < courses.size(); i += 1) {
             selectedCell[i] = false;
         }
 
+        // provide data for cells
         AbstractTableModel model = new AbstractTableModel() {
             public int getColumnCount() { return columns.length + 1; }
             public int getRowCount() { return courses.size(); }
@@ -84,6 +93,7 @@ public class ClassListView extends JPanel {
                 }
             }
 
+            // only the checkbox for selected should be editable
             public boolean isCellEditable(int row, int col) {
                 return (col == 8);
             }
@@ -99,14 +109,17 @@ public class ClassListView extends JPanel {
             }
         };
 
+        // set data on table
         table.setModel(model);
 
+        // adjust layout of wider columns to fit text
         TableColumnModel columnModel = table.getColumnModel();
         columnModel.getColumn(0).setPreferredWidth(180);
         columnModel.getColumn(3).setPreferredWidth(180);
         columnModel.getColumn(5).setPreferredWidth(60);
     }
 
+    // get courses that have their checkbox selected as arraylist
     public ArrayList<Course> selectedCourses() {
         ArrayList<Course> selectedCourses = new ArrayList<>();
         for (int i = 0; i < courses.size(); i += 1) {
