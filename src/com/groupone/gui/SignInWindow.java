@@ -36,7 +36,7 @@ public class SignInWindow extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					
+					columnsExist();
 					SignInWindow frame = new SignInWindow();
 					
 					frame.setVisible(true);
@@ -214,11 +214,10 @@ public class SignInWindow extends JFrame {
 	 */
 	
 	private void checkLoginInfo() {
-	
+		
 
 		String username = this.username.getText();
 		String password = new String(this.password.getPassword());
-		
 		if(checkUsername(username)) {
 			
 			if(PasswordSecurity.checkStudentPassword(username, password)) {
@@ -287,5 +286,48 @@ public class SignInWindow extends JFrame {
 		student = new Student(firstName ,lastName, email, username, password);
 		
 		return student;
+	}
+	
+	private static void columnsExist() {
+		
+		Connection connectToStudents = null;
+		PreparedStatement preparedStm = null;
+		Statement createUsernameColumn = null;
+		Statement createPasswordColumn = null;
+		
+		String getThisStudent = "SELECT * FROM `students`.`student_list` WHERE username = ?";
+		
+		try {
+			
+			connectToStudents = DriverManager.getConnection(host, dbUser, dbPass);
+			
+			DatabaseMetaData studentListMetadata = connectToStudents.getMetaData();
+			
+			// Gets 
+			
+			ResultSet userNameColumn = studentListMetadata.getColumns(null, null, "student_list", "username");
+			ResultSet passwordColumn = studentListMetadata.getColumns(null, null, "student_list", "password");
+			
+			if(userNameColumn.next() && passwordColumn.next()) {
+				return;
+			}
+			
+			else {
+				
+				// creates username column
+				
+				createUsernameColumn = connectToStudents.createStatement();
+				createUsernameColumn.executeUpdate("ALTER TABLE `students`.`student_list` ADD username");
+				
+				// creates password column
+				
+				createPasswordColumn = connectToStudents.createStatement();
+				createPasswordColumn.executeUpdate("ALTER TABLE `students`.`student_list` ADD password");
+				
+			}
+			
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		}
 	}
 }
