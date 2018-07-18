@@ -52,22 +52,43 @@ public class PasswordSecurity {
 		return myHash;
 	}
 	
-	// This method adds the generated hash to the student in the database
+	// This method adds the generated hash to the student in the database. It also checks if the hash column exists in the database and creates the column if it does not.
 	
-	private static void addHashToStudent(String username, String password) {
+	public static void addHashToStudent(String username, String password) {
 		
 		Connection connectToDB;
 		PreparedStatement preparedStatement = null;
+		Statement createHashColumn = null;
 		
 		String sql = "UPDATE `students`.`student_list` SET hash = ? WHERE username = ?";
 		
 		try {
 			connectToDB = Methods.connectToStudentsTable(dbUser, dbPass);
 			
-			preparedStatement = connectToDB.prepareStatement(sql);
-			preparedStatement.setString(1, generateHash(password));
-			preparedStatement.setString(2, username);
-			preparedStatement.executeUpdate();
+			DatabaseMetaData studentListMetadata = connectToDB.getMetaData();
+			ResultSet metadata = studentListMetadata.getColumns(null, null, "studet_list", "hash");
+			
+			if(metadata.next()) {
+				preparedStatement = connectToDB.prepareStatement(sql);
+				preparedStatement.setString(1, generateHash(password));
+				preparedStatement.setString(2, username);
+				preparedStatement.executeUpdate();
+			}
+			else {
+				
+				// adds hash column to student_list table
+				
+				String updateColumn = "ALTER TABLE `students`.`student_list` ADD hash";
+				createHashColumn = connectToDB.createStatement();
+				createHashColumn.executeUpdate(updateColumn);
+				
+				// adds hash after creating hash column
+		
+				preparedStatement = connectToDB.prepareStatement(sql);
+				preparedStatement.setString(1, generateHash(password));
+				preparedStatement.setString(2, username);
+				preparedStatement.executeUpdate();
+			}
 			
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage());
@@ -123,9 +144,9 @@ public class PasswordSecurity {
 		PreparedStatement preparedStatement = null;
 		
 		String sql = "SELECT `hash` FROM `students`.`student_list` WHERE username = ?";
-		
 		try {
 			connectToDB = DriverManager.getConnection(host,dbUser, dbPass);
+			
 			preparedStatement = connectToDB.prepareStatement(sql);
 			preparedStatement.setString(1, username);
 			
@@ -134,7 +155,7 @@ public class PasswordSecurity {
 			if(rs.next()) {
 				hashInDatabase = rs.getString(1);
 			}
-			
+		
 		} catch(SQLException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
