@@ -4,32 +4,34 @@ package com.groupone.gui;
 import com.groupone.middle.Student;
 import com.groupone.middle.PasswordSecurity;
 
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import java.sql.*;
 import java.awt.*;
 import java.awt.event.*;
 
 
 public class CreateAccountWindow extends JFrame {
 
+
 	private JPanel contentPane;
 	
 	private JTextField FirstName;
 	private JTextField LastName;
+	private JTextField Email;
+	private JTextField ComfEmail;
 	private JPasswordField password;  
 	private JPasswordField ComfPassword;
 	private JTextField Username;
 	private JButton btnCreateAccount;
-	private JTextField Email;
-	private JTextField ComfEmail;
+	private JButton btnReturn;
 	
 	
 
 //Gui layout
 public CreateAccountWindow() {
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	setBounds(100, 100, 450, 400);
+	setBounds(100, 100, 500, 400);
 	contentPane = new JPanel();
 	contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 	setContentPane(contentPane);
@@ -216,34 +218,68 @@ public CreateAccountWindow() {
 	
 	CreateAccountPanel.add(ComfEmail, gbc_ComfEmail);
 	
-	
+	//Button create account 
 	btnCreateAccount = new JButton("Create Account");
 	btnCreateAccount.addActionListener(new ButtonClickListener());
 	
 	GridBagConstraints gbc_btnCreateAccount = new GridBagConstraints();
 	gbc_btnCreateAccount.gridheight = 2;
-	gbc_btnCreateAccount.anchor = GridBagConstraints.EAST;
+	gbc_btnCreateAccount.anchor = GridBagConstraints.CENTER;
 	gbc_btnCreateAccount.insets = new Insets(0, 0, 0, 5);
 	gbc_btnCreateAccount.gridx = 4;
 	gbc_btnCreateAccount.gridy = 15;
 	
 	CreateAccountPanel.add(btnCreateAccount, gbc_btnCreateAccount);
 	
+	//button return
+	btnReturn= new JButton("Return");
+	btnReturn.addActionListener(new ButtonClickListener());
+	
+	GridBagConstraints gbc_Return = new GridBagConstraints();
+	gbc_Return.gridheight = 2;
+	gbc_Return.anchor = GridBagConstraints.WEST;
+	gbc_Return.insets = new Insets(0, 0, 0,  5);
+	gbc_Return.gridx = 4;
+	gbc_Return.gridy = 15;
+	
+	CreateAccountPanel.add(btnReturn, gbc_Return);
+	
+	
 	
 }
 
 
-
+//Button listener
 public class ButtonClickListener implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource()==btnCreateAccount) {
-			if(CheckAccountInfo()) {
+		 Object source = e.getSource();
+		if(source == btnCreateAccount) {
+				if(CheckAccountInfo()) {
 				CreateAccount();
 				}
+				
+			} else if(source == btnReturn) {
+				Return();
 			}
-			
 		}
 	}
+	//Returns to landing
+	private void Return() {
+		JFrame frame = new JFrame("Course Registration");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        LandingPage panel = new LandingPage();
+        frame.getContentPane().add(panel);
+        frame.pack();
+        frame.setSize(200, 140);
+
+        frame.setVisible(true);
+	   
+        dispose();
+	}
+
+
+
 	// Checks to see if data is entered fully, checks if password and email match.
 	// Returns true only all data is correct.
 	private boolean CheckAccountInfo() {
@@ -275,7 +311,7 @@ public class ButtonClickListener implements ActionListener {
 		return true;
 		
 	}
-	
+	//Passes student account info onto database, passwords is hashed. Returns to landing if server accepts data.
 	private void CreateAccount() {
 		String StudentFirstName = this.FirstName.getText();
 		String StudentLastName = this.LastName.getText();
@@ -287,17 +323,14 @@ public class ButtonClickListener implements ActionListener {
 		
 		if(student.emailExists()) {
 			JOptionPane.showMessageDialog(null, "Emails already exist.");
+		} else {
+		JOptionPane.showMessageDialog(null, "Account Created");
+			Return();
 		}
 		
-	
+		
 		
 	}
 
 
 }
-
-<<<<<<< HEAD
-}
-=======
-}
->>>>>>> branch 'master' of https://github.com/adelventura/CourseRegistrationApp
