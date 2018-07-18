@@ -2,6 +2,7 @@ package com.groupone.gui;
 
 
 import com.groupone.middle.Student;
+import com.groupone.middle.PasswordSecurity;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -11,28 +12,20 @@ import java.awt.event.*;
 
 
 public class CreateAccountWindow extends JFrame {
-	private String host = "jdbc:mysql://localhost:3306/students";
-	private String dbUser = "root";
-	private String dbPass = "password";
+
 	private JPanel contentPane;
 	
 	private JTextField FirstName;
 	private JTextField LastName;
 	private JPasswordField password;  
 	private JPasswordField ComfPassword;
-	private JTextField username;
+	private JTextField Username;
 	private JButton btnCreateAccount;
 	private JTextField Email;
 	private JTextField ComfEmail;
 	
-	private String StudentFirstName;
-	private String StudentLastName;
-	private int studentID;
-	private String StudentPassword;
-	private String StudentComfPassword;
-	private String StudentEmail;
-	private String StudentComfEmail;
 	
+
 //Gui layout
 public CreateAccountWindow() {
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -73,7 +66,7 @@ public CreateAccountWindow() {
 	gbc_lblFirstName.anchor = GridBagConstraints.WEST;
 	gbc_lblFirstName.insets = new Insets(0, 0, 5, 5);
 	gbc_lblFirstName.gridx = 4;
-	gbc_lblFirstName.gridy = 2;
+	gbc_lblFirstName.gridy = 1;
 	
 	CreateAccountPanel.add(lblFirstName, gbc_lblFirstName);
 	
@@ -83,7 +76,7 @@ public CreateAccountWindow() {
 	gbc_FirstName.insets = new Insets(0, 0, 5, 5);
 	gbc_FirstName.fill = GridBagConstraints.HORIZONTAL;
 	gbc_FirstName.gridx = 4;
-	gbc_FirstName.gridy = 3;
+	gbc_FirstName.gridy = 2;
 	
 	CreateAccountPanel.add(FirstName, gbc_FirstName);
 	FirstName.setColumns(10);
@@ -95,7 +88,7 @@ public CreateAccountWindow() {
 	gbc_lblLastName.anchor = GridBagConstraints.WEST;
 	gbc_lblLastName.insets = new Insets(0, 0, 5, 5);
 	gbc_lblLastName.gridx = 4;
-	gbc_lblLastName.gridy = 4;
+	gbc_lblLastName.gridy = 3;
 	
 	CreateAccountPanel.add(lblLastName, gbc_lblLastName);
 	
@@ -106,10 +99,35 @@ public CreateAccountWindow() {
 	gbc_LastName.insets = new Insets(0, 0, 5, 5);
 	gbc_LastName.fill = GridBagConstraints.HORIZONTAL;
 	gbc_LastName.gridx = 4;
-	gbc_LastName.gridy = 5;
+	gbc_LastName.gridy = 4;
 	
 	CreateAccountPanel.add(LastName, gbc_LastName);
 	LastName.setColumns(10);
+	
+	// Username Field
+		JLabel lblUsername = new JLabel("Username:");
+		
+		GridBagConstraints gbc_lblUsernmame = new GridBagConstraints();
+		gbc_lblUsernmame.anchor = GridBagConstraints.WEST;
+		gbc_lblUsernmame.insets = new Insets(0, 0, 5, 5);
+		gbc_lblUsernmame.gridx = 4;
+		gbc_lblUsernmame.gridy = 5;
+		
+		CreateAccountPanel.add(lblUsername, gbc_lblUsernmame);
+		
+		Username = new JTextField();
+		
+		
+		GridBagConstraints gbc_Username = new GridBagConstraints();
+		gbc_Username.insets = new Insets(0, 0, 5, 5);
+		gbc_Username.fill = GridBagConstraints.HORIZONTAL;
+		gbc_Username.gridx = 4;
+		gbc_Username.gridy = 6;
+		
+		CreateAccountPanel.add(Username, gbc_Username);
+		Username.setColumns(10);
+		
+	
 	
 	//Password Field
 	JLabel lblPassword = new JLabel("Password:");
@@ -118,7 +136,7 @@ public CreateAccountWindow() {
 	gbc_lblPassword.anchor = GridBagConstraints.WEST;
 	gbc_lblPassword.insets = new Insets(0, 0, 5, 5);
 	gbc_lblPassword.gridx = 4;
-	gbc_lblPassword.gridy = 6;
+	gbc_lblPassword.gridy = 7;
 	
 	CreateAccountPanel.add(lblPassword, gbc_lblPassword);
 	
@@ -128,7 +146,7 @@ public CreateAccountWindow() {
 	gbc_password.fill = GridBagConstraints.HORIZONTAL;
 	gbc_password.insets = new Insets(0, 0, 5, 5);
 	gbc_password.gridx = 4;
-	gbc_password.gridy = 7;
+	gbc_password.gridy = 8;
 	
 	CreateAccountPanel.add(password, gbc_password);
 	
@@ -139,7 +157,7 @@ public CreateAccountWindow() {
 	gbc_lblComfPassword.anchor = GridBagConstraints.WEST;
 	gbc_lblComfPassword.insets = new Insets(0, 0, 5, 5);
 	gbc_lblComfPassword.gridx = 4;
-	gbc_lblComfPassword.gridy = 8;
+	gbc_lblComfPassword.gridy = 9;
 	
 	CreateAccountPanel.add(lblComfPassword, gbc_lblComfPassword);
 	
@@ -150,7 +168,7 @@ public CreateAccountWindow() {
 	gbc_Comfpassword.fill = GridBagConstraints.HORIZONTAL;
 	gbc_Comfpassword.insets = new Insets(0, 0, 5, 5);
 	gbc_Comfpassword.gridx = 4;
-	gbc_Comfpassword.gridy = 9;
+	gbc_Comfpassword.gridy = 10;
 	
 	CreateAccountPanel.add(ComfPassword, gbc_Comfpassword);
 	
@@ -161,7 +179,7 @@ public CreateAccountWindow() {
 	 gbc_lblEmail.anchor = GridBagConstraints.WEST;
 	 gbc_lblEmail.insets = new Insets(0, 0, 5, 5);
 	 gbc_lblEmail.gridx = 4;
-	 gbc_lblEmail.gridy = 10;
+	 gbc_lblEmail.gridy = 11;
 	
 	CreateAccountPanel.add(lblEmail,  gbc_lblEmail);
 	
@@ -172,7 +190,7 @@ public CreateAccountWindow() {
 	gbc_Email.fill = GridBagConstraints.HORIZONTAL;
 	gbc_Email.insets = new Insets(0, 0, 5, 5);
 	gbc_Email.gridx = 4;
-	gbc_Email.gridy = 11;
+	gbc_Email.gridy = 12;
 	
 	CreateAccountPanel.add(Email, gbc_Email);
 	
@@ -183,7 +201,7 @@ public CreateAccountWindow() {
 	 gbc_lblComfEmail.anchor = GridBagConstraints.WEST;
 	 gbc_lblComfEmail.insets = new Insets(0, 0, 5, 5);
 	 gbc_lblComfEmail.gridx = 4;
-	 gbc_lblComfEmail.gridy = 12;
+	 gbc_lblComfEmail.gridy = 13;
 	
 	CreateAccountPanel.add(lblComfEmail,  gbc_lblComfEmail);
 	
@@ -194,7 +212,7 @@ public CreateAccountWindow() {
 	gbc_ComfEmail.fill = GridBagConstraints.HORIZONTAL;
 	gbc_ComfEmail.insets = new Insets(0, 0, 5, 5);
 	gbc_ComfEmail.gridx = 4;
-	gbc_ComfEmail.gridy = 13;
+	gbc_ComfEmail.gridy = 14;
 	
 	CreateAccountPanel.add(ComfEmail, gbc_ComfEmail);
 	
@@ -207,7 +225,7 @@ public CreateAccountWindow() {
 	gbc_btnCreateAccount.anchor = GridBagConstraints.EAST;
 	gbc_btnCreateAccount.insets = new Insets(0, 0, 0, 5);
 	gbc_btnCreateAccount.gridx = 4;
-	gbc_btnCreateAccount.gridy = 14;
+	gbc_btnCreateAccount.gridy = 15;
 	
 	CreateAccountPanel.add(btnCreateAccount, gbc_btnCreateAccount);
 	
@@ -231,6 +249,7 @@ public class ButtonClickListener implements ActionListener {
 	private boolean CheckAccountInfo() {
 		String StudentFirstName = this.FirstName.getText();
 		String StudentLastName = this.LastName.getText();
+		String StudentUsername = this.Username.getText();
 		String StudentPassword = new String(this.password.getPassword());
 		String StudentComfPassword = new String(this.ComfPassword.getPassword());
 		String StudentEmail = this.Email.getText();
@@ -238,7 +257,7 @@ public class ButtonClickListener implements ActionListener {
 		
 		
 		if (StudentFirstName.isEmpty() || StudentLastName.isEmpty() || StudentPassword.isEmpty() 
-			|| StudentEmail.isEmpty() || StudentComfEmail.isEmpty()) {
+			|| StudentEmail.isEmpty() || StudentComfEmail.isEmpty() || StudentUsername.isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Please fill in all forms.");
 			return false;
 		}
@@ -260,18 +279,22 @@ public class ButtonClickListener implements ActionListener {
 	private void CreateAccount() {
 		String StudentFirstName = this.FirstName.getText();
 		String StudentLastName = this.LastName.getText();
+		String StudentUsername = this.Username.getText();
 		String StudentPassword = new String(this.password.getPassword());
 		String StudentEmail = this.Email.getText();
-	
-		Student student = new Student(StudentFirstName, StudentLastName, StudentEmail);
+		Student student = new Student(StudentFirstName, StudentLastName, StudentEmail, StudentUsername, StudentPassword);
+		PasswordSecurity.addHashToStudent(StudentUsername, StudentPassword);
+		
 		if(student.emailExists()) {
 			JOptionPane.showMessageDialog(null, "Emails already exist.");
 		}
-		//TODO: Wait for student class to take password.
 		
+	
 		
 	}
 
+
+}
 
 <<<<<<< HEAD
 }
