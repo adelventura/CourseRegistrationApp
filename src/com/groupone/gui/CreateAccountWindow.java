@@ -273,4 +273,8 @@ public class ButtonClickListener implements ActionListener {
 	}
 
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> branch 'master' of https://github.com/adelventura/CourseRegistrationApp

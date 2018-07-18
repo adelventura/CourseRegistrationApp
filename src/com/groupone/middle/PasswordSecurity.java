@@ -83,6 +83,7 @@ public class PasswordSecurity {
 	 *  This method compares the hash value in the database and the hash value of the entered password.
 	 *  If they are the same then, the user can sign in
 	 */
+
 	public static boolean checkStudentPassword(String username, String password) {
 		
 		boolean passCheck = false;
@@ -98,6 +99,8 @@ public class PasswordSecurity {
 			if (!(hashInDatabase.equals(checkThisHash))) {
 				
 				passCheck = false;
+				JOptionPane.showMessageDialog(new JButton("OK"),"Password Incorrect. Please try again.");
+
 			}
 			else {
 				passCheck = true;
