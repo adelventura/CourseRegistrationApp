@@ -15,8 +15,8 @@ public class ScheduleView extends JPanel {
     private JLabel nameLabel;
     private JLabel blankLabel;
     private JButton addButton;
-    private ClassListView classListView;
     private JButton dropButton;
+    private ClassListView classListView;
     public Student student;
 
     public ScheduleView(Student student) {
