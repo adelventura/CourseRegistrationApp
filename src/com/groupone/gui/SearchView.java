@@ -108,6 +108,10 @@ public class SearchView extends JPanel {
         for (Course course : addedCourses) {
             student.addCourseToExistingCourseList(course.courseNum, course.department);
         }
+
+        // TODO: delete when db methods for adding classes works
+        // adding in memory just for demoing. no check for time conflict or existing course
+        student.courses.addAll(addedCourses);
     }
 
     private void exitSearch() {
