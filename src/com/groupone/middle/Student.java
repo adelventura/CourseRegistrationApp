@@ -7,18 +7,20 @@ import java.util.ArrayList;
 
 public class Student {
 
-//    public String username;
-//    public String password;
+	public String username;
+	public String password;
     public String firstName;
     public String lastName;
     public String email;
     public static String studentCourseTbl;
     public ArrayList<Course> courses;
 
-    public Student(String firstName, String lastName, String email) {
+    public Student(String firstName, String lastName, String email, String username, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.username = username;
+        this.password = password;
         studentCourseTbl = lastName.toLowerCase() + "_table";
         //when a new student is created, he/she is automatically added to student database
         addStudentInfoToStudentsTable();
@@ -45,13 +47,16 @@ public class Student {
     public void addStudentInfoToStudentsTable() {
 
         if (!studentExists()) {
-            String sql = "INSERT INTO `students`.`student_list`(`First_Name`,`Last_Name`, `email`)"
-                    + " VALUES(?,?,?)";
+        	
+            String sql = "INSERT INTO `students`.`student_list`(`First_Name`,`Last_Name`, `email`, `username`, `password`)"
+                    + " VALUES(?,?,?,?,?)";
             try (Connection conn = Methods.connectToStudentsTable("root", "password");
                  PreparedStatement pstmt = conn.prepareStatement(sql)) {
                 pstmt.setString(1, this.firstName);
                 pstmt.setString(2, this.lastName);
                 pstmt.setString(3, this.email);
+                pstmt.setString(4, this.username);
+                pstmt.setString(5, this.password);
                 pstmt.executeUpdate();
 
             } catch (SQLException e) {
@@ -302,8 +307,5 @@ public class Student {
             System.out.println("course list exists: " + e.getMessage());
         }
         return false;
-
     }
-
-
 }

@@ -1,4 +1,5 @@
 package com.groupone.gui;
+import com.groupone.middle.PasswordSecurity;
 import com.groupone.middle.Student;
 
 import javax.swing.*;
@@ -11,9 +12,9 @@ public class SignInWindow extends JFrame {
 
 	// variables for database connection 
 	
-	private String host = "jdbc:mysql://localhost:3306/students";
-	private String dbUser = "root";
-	private String dbPass = "password";
+	private static String host = "jdbc:mysql://localhost:3306/students";
+	private static String dbUser = "root";
+	private static String dbPass = "password";
 	private JPanel contentPane;
 	
 	// variables for text fields
@@ -35,21 +36,10 @@ public class SignInWindow extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					
 					SignInWindow frame = new SignInWindow();
 					
 					frame.setVisible(true);
-			
-					/* This if-else statement is for when checkLoginInfo method is complete.
-					 * It disposes the login frame if the username/password is correct,
-					 * and it shows a dialog box saying incorrect username/password if it is incorrect.
-					 */
-					
-					if(frame.checkLoginInfo()) {
-						frame.dispose();
-					}
-					else {
-						JOptionPane.showMessageDialog(new JButton("OK"), "Incorrect Password");
-					}
 					
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -190,27 +180,28 @@ public class SignInWindow extends JFrame {
 	/* 
 	 * This method checks whether the given Student id exists in the database or not
 	 */
-	private boolean doesIdExist(int id) {
-		
+	private boolean checkUsername(String studentUserName) {
+		studentUserName = username.getText();
 		boolean doesExist = false;
 		
 		Connection connectToStudents = null;
 		PreparedStatement preparedStm = null;
 		
-		String lookForStudentId = "SELECT [student id] FROM students WHERE [sudent id] = ?";
+		String lookForStudentUsername = "SELECT * FROM `students`.`student_list` WHERE username = ?";
 		
 		try {
-			
 			connectToStudents = DriverManager.getConnection(host, dbUser, dbPass);
 			
-			preparedStm = connectToStudents.prepareStatement(lookForStudentId);
-			preparedStm.setInt(1, id);
+			preparedStm = connectToStudents.prepareStatement(lookForStudentUsername);
+			preparedStm.setString(1, studentUserName);
 			
 			ResultSet rs = preparedStm.executeQuery();
-			
-			doesExist = true;
+			if(rs.absolute(1)) {
+				doesExist = true;
+			}
 			
 		} catch (Exception e) {
+			doesExist = false;
 			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
 		
@@ -219,54 +210,82 @@ public class SignInWindow extends JFrame {
 	
 	/*
 	 *  This method checks if the given password is correct.
-	 *  It calls doesIdExist in a if-statement to make sure that the student exists in the database.
+	 *  
 	 */
 	
-	private boolean checkLoginInfo() {
-		// TODO: use commented code below when database ready. This is just some hardcoded login
-		//	for testing
+	private void checkLoginInfo() {
+	
+
 		String username = this.username.getText();
 		String password = new String(this.password.getPassword());
+		
+		if(checkUsername(username)) {
+			
+			if(PasswordSecurity.checkStudentPassword(username, password)) {
+				
+				JFrame frame = new JFrame("Course Registration");
+				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				
+				
+				ScheduleView panel = new ScheduleView(prepareScheduleView());
+				frame.getContentPane().add(panel);
+				frame.pack();
+				frame.setSize(900, 500);
 
-		if (username.equals("James") && password.equals("password")) {
-			JFrame frame = new JFrame("Course Registration");
-			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				frame.setVisible(true);
 
-			Student student = new Student("James", "Lee", "jamesl@gmail.com");
-			ScheduleView panel = new ScheduleView(student);
-			frame.getContentPane().add(panel);
-			frame.pack();
-			frame.setSize(900, 500);
-
-			frame.setVisible(true);
-
-			dispose();
-
-			return true;
-		} else {
-			JOptionPane.showMessageDialog(null, "Incorrect Username/Password");
-
-			return false;
+				dispose();
+			}
+			else {
+				JOptionPane.showMessageDialog(new JButton("OK"), "Password Incorrect. Please try again.");
+			}
 		}
-
-		//		boolean loginInfo = false;
-//		Connection connectToStudents = null;
-//		PreparedStatement preparedStm = null;
-//
-//		studentID = Integer.parseInt(username.getText());
-//		studentPassword = new String(password.getPassword());
-//
-//		if(doesIdExist(studentID)) {
-//			try {
-//				// TODO: Query database for the student's password to compare it with the given password
-//
-//				loginInfo = true;
-//
-//			} catch(Exception e) {
-//				JOptionPane.showMessageDialog(null, e.getMessage());
-//			}
-//
-//		}
-//		return loginInfo;
+		else {
+			JOptionPane.showMessageDialog(new JButton("OK"), "Username does not exist.");
+		}
+	}
+	
+	// This method retrieves information from the student with the given username in order to construct a student. The student object will be used to initialize the Schedule View.
+	
+	private Student prepareScheduleView() {
+		
+		Student student;
+		
+		String firstName = null;
+		String lastName = null;
+		String email = null;
+		
+		String username = this.username.getText();
+		String password = new String(this.password.getPassword());
+		
+		Connection connectToStudents = null;
+		PreparedStatement preparedStm = null;
+		
+		String getThisStudent = "SELECT * FROM `students`.`student_list` WHERE username = ?";
+		
+		try {
+			
+			connectToStudents = DriverManager.getConnection(host, dbUser, dbPass);
+			
+			preparedStm = connectToStudents.prepareStatement(getThisStudent);
+			preparedStm.setString(1, username);
+			
+			ResultSet rs = preparedStm.executeQuery();
+			
+			if(rs.absolute(1)) {
+			
+				firstName = rs.getString(2);
+				lastName = rs.getString(3);
+				email = rs.getString(4);
+				
+			}
+			
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		}
+		
+		student = new Student(firstName ,lastName, email, username, password);
+		
+		return student;
 	}
 }

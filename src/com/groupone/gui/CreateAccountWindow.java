@@ -237,35 +237,40 @@ public class ButtonClickListener implements ActionListener {
 		String StudentComfEmail =  this.ComfEmail.getText();
 		
 		
-		if (StudentFirstName.isEmpty() && StudentLastName.isEmpty() && StudentPassword.isEmpty() 
-			&& StudentEmail.isEmpty()) {
+		if (StudentFirstName.isEmpty() || StudentLastName.isEmpty() || StudentPassword.isEmpty() 
+			|| StudentEmail.isEmpty() || StudentComfEmail.isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Please fill in all forms.");
 			return false;
 		}
 		
-		if(StudentPassword.equals(StudentComfPassword)) {
-			if(StudentEmail.equalsIgnoreCase(StudentComfEmail)) {
-				return true;
-			} else {
-				JOptionPane.showMessageDialog(null, "Emails do not match.");
-				return false;
-			}
-		} else {
+		if(!(StudentPassword.equals(StudentComfPassword))) {
 			JOptionPane.showMessageDialog(null, "Passwords do not match.");
 			return false;
 		}
-	
+		if(!(StudentEmail.equalsIgnoreCase(StudentComfEmail))) {
+			JOptionPane.showMessageDialog(null, "Emails do not mathch.");
+					return false;
+				}
+			
+		
+		return true;
 		
 	}
 	
-	//Passes First name, Last Name, and Email to database
 	private void CreateAccount() {
+		String StudentFirstName = this.FirstName.getText();
+		String StudentLastName = this.LastName.getText();
+		String StudentPassword = new String(this.password.getPassword());
+		String StudentEmail = this.Email.getText();
+	
 		Student student = new Student(StudentFirstName, StudentLastName, StudentEmail);
+		if(student.emailExists()) {
+			JOptionPane.showMessageDialog(null, "Emails already exist.");
+		}
 		//TODO: Wait for student class to take password.
 		
 		
 	}
-
 
 
 }
