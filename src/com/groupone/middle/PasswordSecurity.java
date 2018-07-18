@@ -66,7 +66,7 @@ public class PasswordSecurity {
 			connectToDB = Methods.connectToStudentsTable(dbUser, dbPass);
 			
 			DatabaseMetaData studentListMetadata = connectToDB.getMetaData();
-			ResultSet metadata = studentListMetadata.getColumns(null, null, "studet_list", "hash");
+			ResultSet metadata = studentListMetadata.getColumns(null, null, "student_list", "hash");
 			
 			if(metadata.next()) {
 				preparedStatement = connectToDB.prepareStatement(sql);
